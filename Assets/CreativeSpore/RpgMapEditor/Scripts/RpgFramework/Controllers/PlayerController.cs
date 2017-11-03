@@ -6,6 +6,13 @@ namespace CreativeSpore.RpgMapEditor
     [AddComponentMenu("RpgMapEditor/Controllers/PlayerController", 10)]
 	public class PlayerController : CharBasicController {
 
+        // 작업중 Weapon
+        Weapon weapon;
+
+        // 회피 최대 길이
+        public float evadeLength = 1.0f;
+
+
 		public GameObject BulletPrefab;
 		public float TimerBlockDirSet = 0.6f;
 		public Camera2DController Camera2D;
@@ -92,8 +99,9 @@ namespace CreativeSpore.RpgMapEditor
 		}
 
         private float m_keepAttackDirTimer = 0f;
-		void DoInputs(Vector3 dir)
+		void DoInputs()
 		{
+            Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 			Vector3 vBulletDir = Vector3.zero;
 			Vector3 vBulletPos = Vector3.zero;
             float keepAttackDirTimerValue = 0.5f;
@@ -144,44 +152,49 @@ namespace CreativeSpore.RpgMapEditor
                 // not change
             }
             
-            //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            // put shot button
             if (Input.GetKeyDown("r")) {
+
+                weapon.Shoot();
+
                 switch(x) {
                     case 1: vBulletPos = new Vector3( 0.08f, 0.32f, 0f ); break;
                     case 2: vBulletPos = new Vector3( 0.10f, 0.10f, 0f ); break;
                     case 3: vBulletPos = new Vector3( -0.08f, -0.02f, 0f ); break;
                     case 4: vBulletPos = new Vector3( -0.10f, 0.10f, 0f ); break;
                 }
+                
                 vBulletPos += transform.position;
                 vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
                 m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 
-                float fRand = Random.Range(-1f, 1f);
-				fRand = Mathf.Pow(fRand, 5f);
-				vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
+                //float fRand = Random.Range(-1f, 1f);
+				//fRand = Mathf.Pow(fRand, 5f);
+				//vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
                 vBulletDir = new Vector3(vBulletDir.x,vBulletDir.y,-0.5f);
 
                 CreateBullet( vBulletPos, vBulletDir);
             }
             
-            float moveLength = 1.0f;
-            // evasion
+            
+            // evasion ==> mousebuttondown(1)
             if( Input.GetKeyDown("t")) {
                 // direction check
-                
-                vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
+                Evade();
+                //vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
 
                 // evasion animation
 
                 // direction move calculate position
-                transform.position += vBulletDir * moveLength;
-            } else if ( Input.GetKeyDown("e")) {
-                
+                //transform.position += vBulletDir * evadeLength;
             }
 		}
 
+        void Evade() {
+            
+        }
+        
         private int m_lastTileIdx = -1;
         private int m_lastFogSightLength = 0;
 
@@ -202,10 +215,10 @@ namespace CreativeSpore.RpgMapEditor
             }
             else
             {
-                Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                
                 //Debug.Log(dir.ToString());
                 
-                DoInputs(new Vector3(dir.x,dir.y,0));
+                DoInputs();
 
                 bool isMoving = (m_phyChar.Dir.sqrMagnitude >= 0.01);
                 if (isMoving)
