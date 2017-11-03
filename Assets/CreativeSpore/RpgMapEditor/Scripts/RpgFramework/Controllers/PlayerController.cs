@@ -143,7 +143,7 @@ namespace CreativeSpore.RpgMapEditor
             } else {
                 // not change
             }
-            /*
+            
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             if (Input.GetKeyDown("r")) {
@@ -154,66 +154,32 @@ namespace CreativeSpore.RpgMapEditor
                     case 4: vBulletPos = new Vector3( -0.10f, 0.10f, 0f ); break;
                 }
                 vBulletPos += transform.position;
-                vBulletDir = dir - new Vector3(transform.position.x, transform.position.y,0f);
+                vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
                 m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
-                Debug.Log("first" + vBulletDir.ToString());
+
                 float fRand = Random.Range(-1f, 1f);
 				fRand = Mathf.Pow(fRand, 5f);
 				vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
                 vBulletDir = new Vector3(vBulletDir.x,vBulletDir.y,-0.5f);
-                Debug.Log("second" + vBulletDir.ToString());
+
                 CreateBullet( vBulletPos, vBulletDir);
-            
             }
-            */
+            
+            float moveLength = 1.0f;
+            // evasion
+            if( Input.GetKeyDown("t")) {
+                // direction check
+                
+                vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
 
-            if( Input.GetKeyDown( "j" ) ) //down
-			{
-				vBulletPos = new Vector3( -0.08f, -0.02f, 0f );
-				vBulletPos += transform.position;
-				vBulletDir = Vector3.down;
-				m_animCtrl.AnimDirection = eAnimDir.Down;
-				m_timerBlockDir = TimerBlockDirSet;
-                m_keepAttackDirTimer = keepAttackDirTimerValue;
-			}
-			else if( Input.GetKeyDown( "h" ) ) // left
-			{
-				vBulletPos = new Vector3( -0.10f, 0.10f, 0f );
-				vBulletPos += transform.position;
-				vBulletDir = -Vector3.right;
-                m_animCtrl.AnimDirection = eAnimDir.Left;
-				m_timerBlockDir = TimerBlockDirSet;
-                m_keepAttackDirTimer = keepAttackDirTimerValue;
-			}
-			else if( Input.GetKeyDown( "k" ) ) // right
-			{
-				vBulletPos = new Vector3( 0.10f, 0.10f, 0f );
-				vBulletPos += transform.position;
-				vBulletDir = Vector3.right;
-                m_animCtrl.AnimDirection = eAnimDir.Right;
-				m_timerBlockDir = TimerBlockDirSet;
-                m_keepAttackDirTimer = keepAttackDirTimerValue;
-			}
-			else if( Input.GetKeyDown( "u" ) ) // up
-			{
-				vBulletPos = new Vector3( 0.08f, 0.32f, 0f );
-				vBulletPos += transform.position;
-				vBulletDir = -Vector3.down;
-                m_animCtrl.AnimDirection = eAnimDir.Up;
-				m_timerBlockDir = TimerBlockDirSet;
-                m_keepAttackDirTimer = keepAttackDirTimerValue;
-			}
+                // evasion animation
 
-			if( vBulletDir != Vector3.zero )
-			{
-				float fRand = Random.Range(-1f, 1f);
-				fRand = Mathf.Pow(fRand, 5f);
-                Debug.Log("before" + vBulletDir);
-				vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
-				CreateBullet( vBulletPos, vBulletDir);
-                Debug.Log("after" + vBulletDir);
-			}
+                // direction move calculate position
+                transform.position += vBulletDir * moveLength;
+            } else if ( Input.GetKeyDown("e")) {
+                
+            }
 		}
 
         private int m_lastTileIdx = -1;
