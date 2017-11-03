@@ -92,13 +92,83 @@ namespace CreativeSpore.RpgMapEditor
 		}
 
         private float m_keepAttackDirTimer = 0f;
-		void DoInputs()
+		void DoInputs(Vector3 dir)
 		{
 			Vector3 vBulletDir = Vector3.zero;
 			Vector3 vBulletPos = Vector3.zero;
             float keepAttackDirTimerValue = 0.5f;
+            int x = -1;
+
+            // check direction
+            if (dir.x >0 && dir.y >0 ) {
+                if (dir.x > dir.y ) {
+                    // right
+                    m_animCtrl.AnimDirection = eAnimDir.Right;
+                    x = 2;
+                } else {
+                    // up
+                    m_animCtrl.AnimDirection = eAnimDir.Up;
+                    x = 1;
+                }
+            } else if ( dir.x >0 && dir.y <=0) {
+                if (dir.x > -dir.y ) {
+                    // right
+                    m_animCtrl.AnimDirection = eAnimDir.Right;
+                    x = 2;
+                } else {
+                    //down
+                    m_animCtrl.AnimDirection = eAnimDir.Down;
+                    x = 3;
+                }
+            } else if ( dir.x <=0 && dir.y >0 ) {
+                if ( -dir.x > dir.y ) {
+                    // left
+                    m_animCtrl.AnimDirection = eAnimDir.Left;
+                    x = 4;
+                } else {
+                    // up
+                    m_animCtrl.AnimDirection = eAnimDir.Up;
+                    x = 1;
+                }
+            } else if ( dir.x <=0 && dir.y <=0 ) {
+                if ( dir.x > dir.y ) {
+                    // down
+                    m_animCtrl.AnimDirection = eAnimDir.Down;
+                    x = 3;
+                } else {
+                    // left
+                    m_animCtrl.AnimDirection = eAnimDir.Left;
+                    x = 4;
+                }
+            } else {
+                // not change
+            }
+            /*
+            //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            if (Input.GetKeyDown("r")) {
+                switch(x) {
+                    case 1: vBulletPos = new Vector3( 0.08f, 0.32f, 0f ); break;
+                    case 2: vBulletPos = new Vector3( 0.10f, 0.10f, 0f ); break;
+                    case 3: vBulletPos = new Vector3( -0.08f, -0.02f, 0f ); break;
+                    case 4: vBulletPos = new Vector3( -0.10f, 0.10f, 0f ); break;
+                }
+                vBulletPos += transform.position;
+                vBulletDir = dir - new Vector3(transform.position.x, transform.position.y,0f);
+                m_timerBlockDir = TimerBlockDirSet;
+                m_keepAttackDirTimer = keepAttackDirTimerValue;
+                Debug.Log("first" + vBulletDir.ToString());
+                float fRand = Random.Range(-1f, 1f);
+				fRand = Mathf.Pow(fRand, 5f);
+				vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
+                vBulletDir = new Vector3(vBulletDir.x,vBulletDir.y,-0.5f);
+                Debug.Log("second" + vBulletDir.ToString());
+                CreateBullet( vBulletPos, vBulletDir);
             
-			if( Input.GetKeyDown( "j" ) ) //down
+            }
+            */
+
+            if( Input.GetKeyDown( "j" ) ) //down
 			{
 				vBulletPos = new Vector3( -0.08f, -0.02f, 0f );
 				vBulletPos += transform.position;
@@ -139,8 +209,10 @@ namespace CreativeSpore.RpgMapEditor
 			{
 				float fRand = Random.Range(-1f, 1f);
 				fRand = Mathf.Pow(fRand, 5f);
+                Debug.Log("before" + vBulletDir);
 				vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
 				CreateBullet( vBulletPos, vBulletDir);
+                Debug.Log("after" + vBulletDir);
 			}
 		}
 
@@ -150,6 +222,7 @@ namespace CreativeSpore.RpgMapEditor
         protected override void Update()
 		{
             eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
+            
             base.Update();
             if(m_keepAttackDirTimer > 0f)
             {
@@ -159,12 +232,14 @@ namespace CreativeSpore.RpgMapEditor
             m_phyChar.enabled = (Vehicle == null);
             if (Vehicle != null)
             {
-                m_animCtrl.IsPlaying = false;
+                m_animCtrl.IsPlaying = false; 
             }
             else
             {
-
-                DoInputs();
+                Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                //Debug.Log(dir.ToString());
+                
+                DoInputs(new Vector3(dir.x,dir.y,0));
 
                 bool isMoving = (m_phyChar.Dir.sqrMagnitude >= 0.01);
                 if (isMoving)
@@ -188,12 +263,5 @@ namespace CreativeSpore.RpgMapEditor
             m_lastFogSightLength = FogSightLength;
             m_lastTileIdx = tileIdx;
 		}
-
-        void FixedUpdate()
-        {
-            
-        }    
 	}
-
-    
 }
