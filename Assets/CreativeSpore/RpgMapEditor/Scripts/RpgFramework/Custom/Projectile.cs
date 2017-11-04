@@ -25,7 +25,7 @@ namespace CreativeSpore.RpgMapEditor{
 		
 		void Start()
 		{
-			
+			Debug.Log("projectile layer " + gameObject.layer);
 		}
 		void Update () 
 		{

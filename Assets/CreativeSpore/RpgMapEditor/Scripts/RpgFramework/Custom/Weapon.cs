@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace CreativeSpore.RpgMapEditor{
@@ -9,6 +10,7 @@ namespace CreativeSpore.RpgMapEditor{
 		//Network Related
 		private PhotonView PhotonView;
 
+		
 		// 무기 타입 0 = basic, 1 = Short, 2 = Medium, 3 = Long
 		// 최대 탄 용량 infinite, 60, 64, 60
 		// 탄창 크기 10, 10, 8, 5
@@ -21,14 +23,14 @@ namespace CreativeSpore.RpgMapEditor{
 		public int weaponType = 0;
 		
 		public Sprite[] gunImage = new Sprite[2];
-		int maxMagazineCount, remainBullet, remainMagazine;
+		public int maxMagazineCount, remainBullet, remainMagazine;
 		float reloadTime, msBetweenShots,bulletVelocity, damage, ttl;
 
 		float bulletArea;
 		int maxBulletCount;
 
 		// 총알 타입
-		public Projectile projectile;
+		public Projectile[] projectileType = new Projectile[4];
 		
 		// 탄 계산 타임 변수
 		float nextShotTime;
@@ -56,11 +58,19 @@ namespace CreativeSpore.RpgMapEditor{
 			PhotonView = GetComponent<PhotonView> ();
 			setWeaponType(weaponType);
 		}
-		
+		public void RefreshBulletCount() {
+			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
+			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
+			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)maxBulletCount).ToString();
+		}
 		void Start () 
 		{
 			reloading = false;
 			remainBullet = maxBulletCount;
+
+			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
+			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
+			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)maxBulletCount).ToString();
 		}
 
 		public void setWeaponType(int type) {
@@ -106,8 +116,33 @@ namespace CreativeSpore.RpgMapEditor{
 			}
 		}
 
+		public void setBullet(int type) {
+			if (weaponType == 0) {
+				bulletVelocity = 3f;
+				ttl = 3f;
+				damage = 1.0f;
+			} 
+			else if (weaponType == 1) {
+				bulletVelocity = 1.5f;
+				ttl = 3f;
+				damage = 1.0f;
+			} 
+			else if (weaponType == 2) {
+				bulletVelocity = 3f;
+				ttl = 7f;
+				damage = 1.0f;
+			} 
+			else if (weaponType == 3) {
+				bulletVelocity = 5f;
+				ttl = 10f;
+				damage = 1.0f;
+			}
+		}
+
 		public void refillBullet() {
 			remainBullet = maxBulletCount;
+			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
+			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 		public IEnumerator Reload()
@@ -135,6 +170,9 @@ namespace CreativeSpore.RpgMapEditor{
 				}
 			}
 			reloading = false;
+			
+			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
+			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 		public void Shoot() {
@@ -144,7 +182,7 @@ namespace CreativeSpore.RpgMapEditor{
 			if (reloading) return;
 
 			if (remainMagazine > 0) {
-
+			
 			//if (equippedGun.type == "gun") <<<< add
 				if (Time.time > nextShotTime){
 					
@@ -156,7 +194,7 @@ namespace CreativeSpore.RpgMapEditor{
 					vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
 					vBulletDir.z = -0.5f;
 					Debug.Log("Hey");
-					PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir);
+					PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir, Weaponlayer, weaponType);
 					
 					remainMagazine--;
 
@@ -165,14 +203,18 @@ namespace CreativeSpore.RpgMapEditor{
 			} else {
 				Debug.Log("reload");
 				StartCoroutine(Reload());
+				
 			}
+			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
+			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 
 		[PunRPC]
-		private void RPC_Shoot(Vector3 bulletPos, Vector3 bulletDir) {
-			Projectile newProjectile = Instantiate(projectile, bulletPos, projectile.transform.rotation) as Projectile;
-			newProjectile.SetProjectile(bulletVelocity, bulletDir, damage, ttl, Weaponlayer);
+		private void RPC_Shoot(Vector3 bulletPos, Vector3 bulletDir, int myLayer, int type) {
+			Projectile newProjectile = Instantiate(projectileType[type], bulletPos, projectileType[type].transform.rotation) as Projectile;
+			///setBullet(type);
+			newProjectile.SetProjectile(bulletVelocity, bulletDir, damage, ttl, myLayer);
 		}
 	}
 }

@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 namespace CreativeSpore.RpgMapEditor
 {
     [RequireComponent (typeof(WeaponHandler))]
     [AddComponentMenu("RpgMapEditor/Controllers/PlayerController", 10)]
 	public class PlayerController : CharBasicController {
+
+        // UI
+        public Text healthUi;
+
+        public Text clipRemainUi;
+        public Text weaponRemainUi;
+
 
         // Network Related Parameters
 		private PhotonView PhotonView;
@@ -32,7 +39,7 @@ namespace CreativeSpore.RpgMapEditor
         static PlayerController s_instance;
         
         // 0 is left 1 is right;
-        int currentDir = 1;
+        int currentDir = 0;
         void Awake()
         {
             /* 
@@ -90,6 +97,7 @@ namespace CreativeSpore.RpgMapEditor
 
 		protected override void Start () 
 		{
+            
 
             Debug.Log(gameObject.name+ " "  + gameObject.layer.ToString());
             
@@ -101,6 +109,12 @@ namespace CreativeSpore.RpgMapEditor
 			}
 			if (!PhotonView.isMine)
 				return;
+
+            //healthUi.text = GetComponent<DamageBehaviour>().Health.ToString();
+            //clipRemainUi.text = weaponH.
+            //clipRemainUi.text = weaponH.weapons[weaponH.currentWeapon].remainMagazine.ToString();
+            //weaponRemainUi.text = weaponH.weapons[weaponH.currentWeapon].remainBullet.ToString();
+            //weaponRemainUi.text
 
 			m_camera2DFollowBehaviour = Camera2D.transform.GetComponent<FollowObjectBehaviour>();
 			m_camera2DFollowBehaviour.Target = transform;
@@ -156,6 +170,15 @@ namespace CreativeSpore.RpgMapEditor
                         currentDir = 0;
                     }
 
+                }
+
+                if (Input.GetKey("r")) {
+                    weaponH.Reload();
+                    
+                }
+                // drop gun
+                if (Input.GetKey("h")) {
+                    weaponH.DropGun();
                 }
 
                 if (Input.GetMouseButtonDown(0)) { // mousebuttondown(0)

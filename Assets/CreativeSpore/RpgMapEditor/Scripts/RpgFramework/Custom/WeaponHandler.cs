@@ -10,7 +10,6 @@ namespace CreativeSpore.RpgMapEditor{
 		public Weapon[] weapons = new Weapon[2];
 		public Transform weaponHold;
 		
-
 		// Use this for initialization
 		
 		void Start()
@@ -48,7 +47,7 @@ namespace CreativeSpore.RpgMapEditor{
 				weapons[1].setLayer(gameObject.layer);
 				weapons[1].transform.parent = weaponHold;
 			} else {
-				DropGun(weapons[1]);
+				DropGun();
 				weapons[1] = secondWeapon;
 				weapons[1].setLayer(gameObject.layer);
 				weapons[1].transform.parent = weaponHold;
@@ -57,14 +56,17 @@ namespace CreativeSpore.RpgMapEditor{
 			weapons[0].gameObject.SetActive(false);
 			weapons[1].gameObject.SetActive(true);
 			currentWeapon = 1;
+			weapons[currentWeapon].RefreshBulletCount();
 		}
 
-		public void DropGun(Weapon dropWeapon) {
+		public void DropGun() {
 			if(currentWeapon == 0 ){
 				weapons[1].gameObject.SetActive(true);
 			}
-			dropWeapon.transform.parent = null;
+			weapons[1].transform.parent = null;
 			weapons[1] = null;
+			currentWeapon = 0;
+			weapons[currentWeapon].RefreshBulletCount();
 		}
 
 		public void AddBullet() {
@@ -83,6 +85,7 @@ namespace CreativeSpore.RpgMapEditor{
 					currentWeapon = 0;
 				}
 			}
+			weapons[currentWeapon].RefreshBulletCount();
 			Debug.Log("change weapon" + currentWeapon);
 		}
 

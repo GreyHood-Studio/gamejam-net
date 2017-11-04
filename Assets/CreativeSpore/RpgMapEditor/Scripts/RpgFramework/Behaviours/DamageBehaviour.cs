@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 namespace CreativeSpore.RpgMapEditor
@@ -21,6 +22,8 @@ namespace CreativeSpore.RpgMapEditor
 		{
 			m_sprRender = GetComponentInChildren<SpriteRenderer>();
 			m_movingBehaviour = GetComponent<MovingBehaviour>();
+
+			GameObject.Find("Health_C_Count").GetComponent<Text>().text = ((int)Health).ToString();
 		}
 		
 		void Update () 
@@ -43,6 +46,7 @@ namespace CreativeSpore.RpgMapEditor
 
 		public void ApplyDamage( DamageData _damageData )
 		{
+			
 			if( m_timerGodMode <= 0 )
 			{
 				m_timerGodMode = GodModeTimer;
@@ -51,6 +55,9 @@ namespace CreativeSpore.RpgMapEditor
 				//AudioSource.PlayClipAtPoint(SoundLibController.GetInstance().GetSound("hurtEnemy_00"), transform.position); 
 							
 				Health-=_damageData.Quantity;
+				Debug.Log("Health" + Health);
+				//GetComponent<PlayerController> ().healthUi.text = Health.ToString();
+				GameObject.Find("Health_C_Count").GetComponent<Text>().text = ((int)Health).ToString();
 				if( Health <= 0 )
 				{
 					Destroy( gameObject );
