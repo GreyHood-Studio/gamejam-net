@@ -16,7 +16,10 @@ namespace CreativeSpore.RpgMapEditor
 			RIGHT = (1 << 2),
 			UP = (1 << 3)
 		}
+		public bool isEvade;
+		public float maxEvadeLength = 2f;
 
+		public float maxEvadeTime = 1f;
 		public Vector3 Dir;
 		public float MaxSpeed = 1f;
         public bool IsCollEnabled = true;
@@ -35,27 +38,42 @@ namespace CreativeSpore.RpgMapEditor
 
         void Start()
         {
+			isEvade = false;
             m_vPrevPos = transform.position;
         }
 
         void Update() //NOTE: using FixedUpdate the camera follow bhv should be also updated in FixedUpdate after this script is executed
         {
+			if (!isEvade) {
             //RpgMapHelper.DebugDrawRect( transform.position, CollRect, Color.white );
-            if (Dir.sqrMagnitude > 0f)
-            {
-                // divide by n per second ( n:2 )
-                m_speed += (MaxSpeed - m_speed) / Mathf.Pow(2f, Time.deltaTime);
-            }
-            else
-            {
-                m_speed /= Mathf.Pow(2f, Time.deltaTime);
-            }
-            Dir.z = 0f;
-            transform.position += Dir * m_speed * Time.deltaTime;
-            if (IsCollEnabled)
-            {
-                DoCollisions();
-            }
+				if (Dir.sqrMagnitude > 0f)
+				{
+					// divide by n per second ( n:2 )
+					m_speed += (MaxSpeed - m_speed) / Mathf.Pow(2f, Time.deltaTime);
+				}
+				else
+				{
+					m_speed /= Mathf.Pow(2f, Time.deltaTime);
+				}
+				Dir.z = 0f;
+				transform.position += Dir * m_speed * Time.deltaTime;
+				if (IsCollEnabled)
+				{
+					DoCollisions();
+				}
+			} else {
+				float currentEvadeTime = 0.0f;
+				while (currentEvadeTime < maxEvadeTime) {
+					transform.position += Dir * maxEvadeLength * Time.deltaTime;
+					if (IsCollEnabled)
+					{
+						DoCollisions();
+					}
+					currentEvadeTime += 0.1f;
+					Debug.Log("currentEvadeTime "+ currentEvadeTime +" "+maxEvadeTime);
+				}
+				isEvade = false;
+			}
         }
 
         public void TeleportTo(Vector3 vPos)

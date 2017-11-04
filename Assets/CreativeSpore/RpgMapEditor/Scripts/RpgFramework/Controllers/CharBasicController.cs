@@ -37,11 +37,31 @@ namespace CreativeSpore.RpgMapEditor
 
         protected virtual void Update()
         {
-            float fAxisX = Input.GetAxis("Horizontal");
-            float fAxisY = Input.GetAxis("Vertical");
-            UpdateMovement(fAxisX, fAxisY);
+            float fAxisX = 0.0f;
+            float fAxisY = 0.0f;
+            
+            if (Input.GetMouseButtonDown(1)) {
+                Vector3 dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                dir.z = 0;
+                
+                UpdateEvade(dir);
+            } else {
+                // else (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                fAxisX = Input.GetAxis("Horizontal");
+                fAxisY = Input.GetAxis("Vertical");
+                //Debug.Log("input movement horizon vertical" + fAxisX+" "+fAxisY);
+                UpdateMovement(fAxisX, fAxisY);
+            }
         }
 
+        protected void UpdateEvade(Vector3 edir) {
+            Debug.Log("Evade: " +edir.ToString());
+            m_phyChar.isEvade = true;
+            m_phyChar.Dir = edir;
+
+            //m_animCtrl.IsPlaying = m_phyChar.IsMoving;
+            //m_animCtrl.SetAnimDirection(m_phyChar.Dir);
+        }
 
         protected void UpdateMovement( float fAxisX, float fAxisY )
         {

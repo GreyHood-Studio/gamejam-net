@@ -8,6 +8,15 @@ namespace CreativeSpore.RpgMapEditor{
 		
 		public Projectile projectile;
 
+		// 최대 탄 개수
+		public int maxMagazineCount = 90;
+		// 한 탄창당 최대 탄 개수
+		public int oneMagazineCount = 30;
+		// 소유하고 있는 탄 개수
+		int remainBullet;
+		// 현재 탄창에 남은 탄 개수
+		int remainMagazine;
+		public float reloadTime = 1.2f;
 		// 연사 속도
 		public float msBetweenShots = 100;
 		// 탄 속도
@@ -18,6 +27,7 @@ namespace CreativeSpore.RpgMapEditor{
 		// 탄 계산 타임 변수
 		float nextShotTime;
 		
+		bool reloading;
 		// weapon layer
 		int Weaponlayer;
 		/*
@@ -53,11 +63,40 @@ namespace CreativeSpore.RpgMapEditor{
 		public void setLayer(int w){
 			Weaponlayer = w;
 		}
+
 		void Start () 
 		{
+			remainBullet = maxMagazineCount;
             //m_charAnimCtrl = GetComponent<DirectionalAnimation>();
 		}
-		
+
+		public IEnumerator Reload()
+		{
+			reloading = true;
+			
+
+			if (remainMagazine >= oneMagazineCount) { // 탄창에 총알이 다 차 있을 경우
+				Debug.Log("already max bullet");
+				yield return new WaitForSeconds(0.01f);
+			} else { // 리로드 할 수 있는 경우
+				// placement reload animation && sound
+
+				// delay
+				yield return new WaitForSeconds(reloadTime);
+
+				// 다시 채워야하는 총알의 양
+				int refill = oneMagazineCount - remainMagazine;
+				
+				if (remainBullet > refill) { // 남은 총알이 더 많을 경우
+					remainMagazine += refill;
+					remainBullet -= refill;
+				} else { // 남은 총알이 탄창을 다 채울 수 없는 경우
+					remainMagazine += remainBullet;
+					remainBullet = 0;
+				}
+			}
+			reloading = false;
+		}
 		/*
 		void LateUpdate () 
 		{
@@ -100,27 +139,31 @@ namespace CreativeSpore.RpgMapEditor{
 		public void Shoot() {
 			Vector3 vBulletDir = Vector3.zero;
 			Vector3 vBulletPos = Vector3.zero;
-			
 
+			if (reloading) return;
+
+			if (remainMagazine > 0) {
 			//if (equippedGun.type == "gun") <<<< add
-			if (Time.time > nextShotTime){
-				nextShotTime = Time.time + msBetweenShots/1000;
-				
-				Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+				if (Time.time > nextShotTime){
+					
+					nextShotTime = Time.time + msBetweenShots/1000;
+					
+					Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 
-				vBulletPos += transform.position;
-				Debug.Log("b_tr" + transform.position.ToString());
-                vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
-				Debug.Log("three"+vBulletDir.ToString());
+					vBulletPos += transform.position;
+					vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
+					vBulletDir.z = -0.5f;
 
-                vBulletDir = new Vector3(vBulletDir.x,vBulletDir.y,-0.5f);
+					Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
+					newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
+					remainMagazine--;
 
-				Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-				newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
-				
+					Debug.Log("bullet status" + remainBullet + " remain manazine(clip)" + remainMagazine);
+				}
+			} else {
+				Debug.Log("reload");
+				StartCoroutine(Reload());
 			}
 		}
-		
-
 	}
 }

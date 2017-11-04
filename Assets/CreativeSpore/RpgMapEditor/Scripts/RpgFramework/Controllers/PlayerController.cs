@@ -11,9 +11,6 @@ namespace CreativeSpore.RpgMapEditor
         // 작업중 Weapon
         WeaponHandler weaponH;
 
-        // 회피 최대 길이
-        public float evadeLength = 1.0f;
-
 		//public GameObject BulletPrefab;
 		public float TimerBlockDirSet = 0.6f;
 		public Camera2DController Camera2D;
@@ -95,107 +92,18 @@ namespace CreativeSpore.RpgMapEditor
 			m_camera2DFollowBehaviour.Target = transform;
 		}
 
-		void CreateBullet( Vector3 vPos, Vector3 vDir )
-		{
-			//GameFactory.CreateBullet( gameObject, BulletPrefab, vPos, vDir, 4f );
-		}
 
-        private float m_keepAttackDirTimer = 0f;
 		void DoInputs()
 		{
-            Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-			Vector3 vBulletDir = Vector3.zero;
-			Vector3 vBulletPos = Vector3.zero;
-            //float keepAttackDirTimerValue = 0.5f;
-            //int x = -1;
-
-            // check direction
-            if (dir.x >0 && dir.y >0 ) {
-                if (dir.x > dir.y ) {
-                    // right
-                    m_animCtrl.AnimDirection = eAnimDir.Right;
-                    //x = 2;
-                } else {
-                    // up
-                    m_animCtrl.AnimDirection = eAnimDir.Up;
-                    //x = 1;
-                }
-            } else if ( dir.x >0 && dir.y <=0) {
-                if (dir.x > -dir.y ) {
-                    // right
-                    m_animCtrl.AnimDirection = eAnimDir.Right;
-                    //x = 2;
-                } else {
-                    //down
-                    m_animCtrl.AnimDirection = eAnimDir.Down;
-                    //x = 3;
-                }
-            } else if ( dir.x <=0 && dir.y >0 ) {
-                if ( -dir.x > dir.y ) {
-                    // left
-                    m_animCtrl.AnimDirection = eAnimDir.Left;
-                    //x = 4;
-                } else {
-                    // up
-                    m_animCtrl.AnimDirection = eAnimDir.Up;
-                    //x = 1;
-                }
-            } else if ( dir.x <=0 && dir.y <=0 ) {
-                if ( dir.x > dir.y ) {
-                    // down
-                    m_animCtrl.AnimDirection = eAnimDir.Down;
-                    //x = 3;
-                } else {
-                    // left
-                    m_animCtrl.AnimDirection = eAnimDir.Left;
-                    //x = 4;
-                }
-            } else {
-                // not change
-            }
-            
             // put shot button
-            if (Input.GetKeyDown("r")) {
-                Vector3 c_dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                Debug.Log("c_dir" +c_dir.ToString());
-                Debug.Log("c_tr" + transform.position.ToString());
+            if (Input.GetKeyDown("r")) { // mousebuttondown(0)
                 weaponH.Shoot();
-
-                /* 
-                switch(x) {
-                    case 1: vBulletPos = new Vector3( 0.08f, 0.32f, 0f ); break;
-                    case 2: vBulletPos = new Vector3( 0.10f, 0.10f, 0f ); break;
-                    case 3: vBulletPos = new Vector3( -0.08f, -0.02f, 0f ); break;
-                    case 4: vBulletPos = new Vector3( -0.10f, 0.10f, 0f ); break;
-                }
-                
-                vBulletPos += transform.position;
-                vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
-                m_timerBlockDir = TimerBlockDirSet;
-                m_keepAttackDirTimer = keepAttackDirTimerValue;
-
-                //float fRand = Random.Range(-1f, 1f);
-				//fRand = Mathf.Pow(fRand, 5f);
-				//vBulletDir = Quaternion.AngleAxis(BulletAngDispersion*fRand, Vector3.forward) * vBulletDir;
-                vBulletDir = new Vector3(vBulletDir.x,vBulletDir.y,-0.5f);
-
-                CreateBullet( vBulletPos, vBulletDir);
-
-                */
-            }
-            
-            
-            // evasion ==> mousebuttondown(1)
-            if( Input.GetKeyDown("t")) {
-                // direction check
+            } else if (Input.GetKeyDown("t")) { // mousebuttondown(1)
                 Evade();
-                //vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
-
-                // evasion animation
-
-                // direction move calculate position
-                //transform.position += vBulletDir * evadeLength;
-            }
+            } 
+            //else if (Input.GetAxis("Mouse ScrollWhell") != 0f ) { // mouse whell using
+            //    Debug.Log("Wheel");
+            //}
 		}
 
         void Evade() {
@@ -210,21 +118,29 @@ namespace CreativeSpore.RpgMapEditor
             eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
             
             base.Update();
+            /*
             if(m_keepAttackDirTimer > 0f)
             {
                 m_keepAttackDirTimer -= Time.deltaTime;
                 m_animCtrl.AnimDirection = savedAnimDir;
             }
+            */
             m_phyChar.enabled = (Vehicle == null);
             if (Vehicle != null)
             {
                 m_animCtrl.IsPlaying = false; 
             }
+
             else
-            {
-                
-                //Debug.Log(dir.ToString());
-                
+            {   
+                // character mouse direction 
+                Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                if (dir.x > 0) {
+                    m_animCtrl.AnimDirection = eAnimDir.Right;
+                } else if (dir.x < 0) {
+                    m_animCtrl.AnimDirection = eAnimDir.Left;
+                }
+
                 DoInputs();
 
                 bool isMoving = (m_phyChar.Dir.sqrMagnitude >= 0.01);

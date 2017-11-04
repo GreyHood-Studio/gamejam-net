@@ -29,6 +29,10 @@ namespace CreativeSpore.RpgMapEditor{
 		equippedGun.transform.parent = weaponHold;
 		}
 
+		public void Reload(){
+			StartCoroutine(equippedGun.Reload());
+		}
+
 		public void Shoot(){
 			if (equippedGun != null) {
 				equippedGun.Shoot();
