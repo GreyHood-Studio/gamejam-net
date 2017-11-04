@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 namespace CreativeSpore.RpgMapEditor
 {
+    [RequireComponent (typeof(WeaponHandler))]
     [AddComponentMenu("RpgMapEditor/Controllers/PlayerController", 10)]
 	public class PlayerController : CharBasicController {
 
         // 작업중 Weapon
-        Weapon weapon;
+        WeaponHandler weaponH;
 
         // 회피 최대 길이
         public float evadeLength = 1.0f;
 
-
-		public GameObject BulletPrefab;
+		//public GameObject BulletPrefab;
 		public float TimerBlockDirSet = 0.6f;
 		public Camera2DController Camera2D;
 		public float BulletAngDispersion = 15f;
         public SpriteRenderer ShadowSprite;
-        public SpriteRenderer WeaponSprite;
+        //public SpriteRenderer WeaponSprite;
         public int FogSightLength = 5;
 
         /// <summary>
@@ -78,12 +79,13 @@ namespace CreativeSpore.RpgMapEditor
         {
             base.SetVisible(value);
             ShadowSprite.enabled = value;
-            WeaponSprite.enabled = value;
+            //WeaponSprite.enabled = value;
         }
 
 		protected override void Start () 
 		{
             base.Start();
+            weaponH = GetComponent<WeaponHandler>();
 			if( Camera2D == null )
 			{
 				Camera2D = GameObject.FindObjectOfType<Camera2DController>();
@@ -95,7 +97,7 @@ namespace CreativeSpore.RpgMapEditor
 
 		void CreateBullet( Vector3 vPos, Vector3 vDir )
 		{
-			GameFactory.CreateBullet( gameObject, BulletPrefab, vPos, vDir, 4f );
+			//GameFactory.CreateBullet( gameObject, BulletPrefab, vPos, vDir, 4f );
 		}
 
         private float m_keepAttackDirTimer = 0f;
@@ -104,49 +106,49 @@ namespace CreativeSpore.RpgMapEditor
             Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 			Vector3 vBulletDir = Vector3.zero;
 			Vector3 vBulletPos = Vector3.zero;
-            float keepAttackDirTimerValue = 0.5f;
-            int x = -1;
+            //float keepAttackDirTimerValue = 0.5f;
+            //int x = -1;
 
             // check direction
             if (dir.x >0 && dir.y >0 ) {
                 if (dir.x > dir.y ) {
                     // right
                     m_animCtrl.AnimDirection = eAnimDir.Right;
-                    x = 2;
+                    //x = 2;
                 } else {
                     // up
                     m_animCtrl.AnimDirection = eAnimDir.Up;
-                    x = 1;
+                    //x = 1;
                 }
             } else if ( dir.x >0 && dir.y <=0) {
                 if (dir.x > -dir.y ) {
                     // right
                     m_animCtrl.AnimDirection = eAnimDir.Right;
-                    x = 2;
+                    //x = 2;
                 } else {
                     //down
                     m_animCtrl.AnimDirection = eAnimDir.Down;
-                    x = 3;
+                    //x = 3;
                 }
             } else if ( dir.x <=0 && dir.y >0 ) {
                 if ( -dir.x > dir.y ) {
                     // left
                     m_animCtrl.AnimDirection = eAnimDir.Left;
-                    x = 4;
+                    //x = 4;
                 } else {
                     // up
                     m_animCtrl.AnimDirection = eAnimDir.Up;
-                    x = 1;
+                    //x = 1;
                 }
             } else if ( dir.x <=0 && dir.y <=0 ) {
                 if ( dir.x > dir.y ) {
                     // down
                     m_animCtrl.AnimDirection = eAnimDir.Down;
-                    x = 3;
+                    //x = 3;
                 } else {
                     // left
                     m_animCtrl.AnimDirection = eAnimDir.Left;
-                    x = 4;
+                    //x = 4;
                 }
             } else {
                 // not change
@@ -154,9 +156,12 @@ namespace CreativeSpore.RpgMapEditor
             
             // put shot button
             if (Input.GetKeyDown("r")) {
+                Vector3 c_dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                Debug.Log("c_dir" +c_dir.ToString());
+                Debug.Log("c_tr" + transform.position.ToString());
+                weaponH.Shoot();
 
-                weapon.Shoot();
-
+                /* 
                 switch(x) {
                     case 1: vBulletPos = new Vector3( 0.08f, 0.32f, 0f ); break;
                     case 2: vBulletPos = new Vector3( 0.10f, 0.10f, 0f ); break;
@@ -175,6 +180,8 @@ namespace CreativeSpore.RpgMapEditor
                 vBulletDir = new Vector3(vBulletDir.x,vBulletDir.y,-0.5f);
 
                 CreateBullet( vBulletPos, vBulletDir);
+
+                */
             }
             
             

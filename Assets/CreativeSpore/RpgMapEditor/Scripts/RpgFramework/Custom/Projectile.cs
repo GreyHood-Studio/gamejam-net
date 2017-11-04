@@ -13,10 +13,17 @@ namespace CreativeSpore.RpgMapEditor{
 		public GameObject OnDestroyFx;
 		public bool IsDestroyOnCollision = true;
 
-		
+		public void SetProjectile(float _speed, Vector3 bulletDir, float damage, float ttl, int Bulletlayer) {
+			Speed = _speed;
+			Dir = bulletDir;
+			DamageQty = damage;
+			TimeToLive = ttl;
+			gameObject.layer = Bulletlayer;
+			Destroy( transform.gameObject, TimeToLive);
+		}
 		void Start()
 		{
-			Destroy( transform.gameObject, TimeToLive);
+			
 		}
 
 		void Update () 
@@ -25,6 +32,7 @@ namespace CreativeSpore.RpgMapEditor{
 			{
 				Destroy( transform.gameObject );
 			}
+			//transform.Translate(Speed * new Vector3(1,1,0) * Time.deltaTime);
 			transform.position += Speed * Dir * Time.deltaTime;
 		}
 
