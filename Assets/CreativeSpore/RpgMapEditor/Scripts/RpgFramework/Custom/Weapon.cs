@@ -4,8 +4,11 @@ using UnityEngine;
 
 
 namespace CreativeSpore.RpgMapEditor{
-	public class Weapon : MonoBehaviour {
+	public class Weapon : Photon.MonoBehaviour {
 		
+		//Network Related
+		private PhotonView PhotonView;
+
 		// 무기 타입 0 = basic, 1 = Short, 2 = Medium, 3 = Long
 		// 최대 탄 용량 infinite, 60, 64, 60
 		// 탄창 크기 10, 10, 8, 5
@@ -32,33 +35,6 @@ namespace CreativeSpore.RpgMapEditor{
 		bool reloading;
 		// weapon layer
 		int Weaponlayer;
-		/*
-		0.06	0.08	-0.1
-		0.04	0.08	-0.1
-		0.02	0.07	-0.1
-
-		-0.1	0.03	-0.1
-		-0.09	0.05	-0.1
-		-0.07	0.04	-0.1
-		*/
-
-		public Vector3[] vOffDirRight = new Vector3[3]  
-		{ 
-			new Vector3( 0.06f, 0.08f, -0.0001f ),
-			new Vector3( 0.04f, 0.08f, -0.0001f ),
-			new Vector3( 0.02f, 0.07f, -0.0001f ),
-		};
-
-		public Vector3[] vOffDirDown = new Vector3[3]  
-		{ 
-			new Vector3( -0.1f, 0.03f, -0.0001f ),
-			new Vector3( -0.09f, 0.05f, -0.0001f ),
-			new Vector3( -0.07f, 0.04f, -0.0001f ),
-		};
-
-		//public SpriteRenderer WeaponSprite;
-		//public Sprite WeaponSpriteHorizontal;
-		//public Sprite WeaponSpriteVertical;
 
 		//private DirectionalAnimation m_charAnimCtrl;
 
@@ -68,11 +44,13 @@ namespace CreativeSpore.RpgMapEditor{
 
 		void Awake()
 		{
+			PhotonView = GetComponent<PhotonView> ();
 			setWeaponType(weaponType);
 		}
 		
 		void Start () 
 		{
+			reloading = false;
 			remainBullet = maxBulletCount;
 		}
 
@@ -122,11 +100,11 @@ namespace CreativeSpore.RpgMapEditor{
 		public void refillBullet() {
 			remainBullet = maxBulletCount;
 		}
+
 		public IEnumerator Reload()
 		{
 			reloading = true;
 			
-
 			if (remainMagazine >= maxMagazineCount) { // 탄창에 총알이 다 차 있을 경우
 				Debug.Log("already max bullet");
 				yield return new WaitForSeconds(0.01f);
@@ -168,30 +146,8 @@ namespace CreativeSpore.RpgMapEditor{
 					vBulletPos += transform.position;
 					vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
 					vBulletDir.z = -0.5f;
-		
-					if( weaponType == 1 ) {
-						float fRand = Random.Range(-1f, 1f);
-						fRand = Mathf.Pow(fRand, 5f);
-						vBulletDir = Quaternion.AngleAxis(bulletArea*fRand, Vector3.forward) * vBulletDir;
-						Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-						newProjectile.SetProjectile(bulletVelocity + fRand, vBulletDir, damage, ttl, Weaponlayer);
-						
-						fRand = Mathf.Pow(fRand, 5f);
-						vBulletDir = Quaternion.AngleAxis(bulletArea*fRand, Vector3.forward) * vBulletDir;
-						Projectile newProjectile1 = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-						newProjectile1.SetProjectile(bulletVelocity + fRand, vBulletDir, damage, ttl, Weaponlayer);
-
-						fRand = Mathf.Pow(fRand, 5f);
-						vBulletDir = Quaternion.AngleAxis(bulletArea*fRand, Vector3.forward) * vBulletDir;
-						Projectile newProjectile2 = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-						newProjectile2.SetProjectile(bulletVelocity + fRand, vBulletDir, damage, ttl, Weaponlayer);
-					} else if ( weaponType == 2) {
-						Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-						newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
-					} else {
-						Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-						newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
-					}
+					Debug.Log("Hey");
+					PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir);
 					
 					remainMagazine--;
 
@@ -201,6 +157,13 @@ namespace CreativeSpore.RpgMapEditor{
 				Debug.Log("reload");
 				StartCoroutine(Reload());
 			}
+		}
+
+
+		[PunRPC]
+		private void RPC_Shoot(Vector3 bulletPos, Vector3 bulletDir) {
+			Projectile newProjectile = Instantiate(projectile, bulletPos, projectile.transform.rotation) as Projectile;
+			newProjectile.SetProjectile(bulletVelocity, bulletDir, damage, ttl, Weaponlayer);
 		}
 	}
 }

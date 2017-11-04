@@ -8,6 +8,9 @@ namespace CreativeSpore.RpgMapEditor
     [AddComponentMenu("RpgMapEditor/Controllers/PlayerController", 10)]
 	public class PlayerController : CharBasicController {
 
+        // Network Related Parameters
+		private PhotonView PhotonView;
+        
         // 작업중 Weapon
         WeaponHandler weaponH;
 
@@ -36,6 +39,8 @@ namespace CreativeSpore.RpgMapEditor
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
 #endif
 */
+            PhotonView = GetComponent<PhotonView> ();
+
             if(s_instance == null)
             {
                 DontDestroyOnLoad(gameObject);
@@ -101,6 +106,9 @@ namespace CreativeSpore.RpgMapEditor
 		{
             eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
             
+            if (!PhotonView.isMine)
+				return;
+
             base.Update();
             /*
             if(m_keepAttackDirTimer > 0f)

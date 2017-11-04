@@ -14,6 +14,9 @@ public class PlayerNetwork : MonoBehaviour {
 		PhotonView = GetComponent<PhotonView> ();
 		PlayerName = "Smilegate#" + Random.Range (1000, 9999);
 
+		PhotonNetwork.sendRate = 60;
+		PhotonNetwork.sendRateOnSerialize = 30;
+
 		SceneManager.sceneLoaded += OnSceneFinishedLoading;
 	}
 
@@ -45,6 +48,13 @@ public class PlayerNetwork : MonoBehaviour {
 		PlayersInGame++;
 		if (PlayersInGame == PhotonNetwork.playerList.Length) {
 			print ("All players are in the game scene.");
+			PhotonView.RPC ("RPC_CreatePlayer", PhotonTargets.All);
 		}
+	}
+
+	[PunRPC]
+	private void RPC_CreatePlayer(){
+		PhotonNetwork.Instantiate (System.IO.Path.Combine ("Prefabs", "Player"), new Vector3(15f, -26f, -0.5f), Quaternion.identity, 0);
+
 	}
 }
