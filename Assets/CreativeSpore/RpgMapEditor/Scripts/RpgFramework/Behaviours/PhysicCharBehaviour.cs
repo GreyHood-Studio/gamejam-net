@@ -64,13 +64,16 @@ namespace CreativeSpore.RpgMapEditor
 			} else {
 				float currentEvadeTime = 0.0f;
 				while (currentEvadeTime < maxEvadeTime) {
+					//transform.Translate (Dir.normalized);
+
 					transform.position += Dir * maxEvadeLength * Time.deltaTime;
+					
 					if (IsCollEnabled)
 					{
 						DoCollisions();
 					}
 					currentEvadeTime += 0.1f;
-					Debug.Log("currentEvadeTime "+ currentEvadeTime +" "+maxEvadeTime);
+					//Debug.Log("currentEvadeTime "+ currentEvadeTime +" "+maxEvadeTime);
 				}
 				isEvade = false;
 			}

@@ -23,7 +23,7 @@ namespace CreativeSpore.RpgMapEditor
                 SetVisible( value );
             }
         }
-
+        protected bool isDash = false;
         protected DirectionalAnimation m_animCtrl;
         protected PhysicCharBehaviour m_phyChar;
 
@@ -54,13 +54,22 @@ namespace CreativeSpore.RpgMapEditor
             }
         }
 
-        protected void UpdateEvade(Vector3 edir) {
-            Debug.Log("Evade: " +edir.ToString());
+        void UpdateEvade(Vector3 edir) {
+            //Debug.Log("Evade: " +edir.ToString());
             m_phyChar.isEvade = true;
             m_phyChar.Dir = edir;
             
             m_animCtrl.IsPlaying = m_phyChar.IsMoving;
+            isDash=true;
+
+            if (edir.x > 0) { // right
+                m_animCtrl.AnimDirection = eAnimDir.Up;
+            } else { // left
+                m_animCtrl.AnimDirection = eAnimDir.Down;
+            }   
+                
             //m_animCtrl.SetAnimDirection(m_phyChar.Dir);
+            isDash=false;
         }
 
         protected void UpdateMovement( float fAxisX, float fAxisY )

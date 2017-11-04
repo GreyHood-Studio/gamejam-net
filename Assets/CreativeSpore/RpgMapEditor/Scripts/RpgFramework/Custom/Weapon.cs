@@ -19,7 +19,8 @@ namespace CreativeSpore.RpgMapEditor{
 		// 재장전 시간 1.2, 1.2, 1.2, 1.2
 		// 화력 1, 1, 1, 1
 		public int weaponType = 0;
-
+		
+		public Sprite[] gunImage = new Sprite[2];
 		int maxMagazineCount, remainBullet, remainMagazine;
 		float reloadTime, msBetweenShots,bulletVelocity, damage, ttl;
 
@@ -38,6 +39,14 @@ namespace CreativeSpore.RpgMapEditor{
 
 		//private DirectionalAnimation m_charAnimCtrl;
 
+		public void setDirection(int w_dir) {
+			if (w_dir == 0)
+			{
+				gameObject.GetComponent<SpriteRenderer>().sprite = gunImage[0];
+			} else {
+				gameObject.GetComponent<SpriteRenderer>().sprite = gunImage[1];
+			}
+		}
 		public void setLayer(int w){
 			Weaponlayer = w;
 		}

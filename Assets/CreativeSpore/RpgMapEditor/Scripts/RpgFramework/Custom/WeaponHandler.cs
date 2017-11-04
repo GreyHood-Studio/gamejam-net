@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace CreativeSpore.RpgMapEditor{
 	public class WeaponHandler : MonoBehaviour {
-
+		public Weapon startWeapon;
 		public int currentWeapon;
 		public Weapon[] weapons = new Weapon[2];
 		public Transform weaponHold;
-		public Weapon startWeapon;
+		
 
 		// Use this for initialization
 		
@@ -18,11 +18,29 @@ namespace CreativeSpore.RpgMapEditor{
 			weapons[0] = null;
 			weapons[1] = null;
 
-			weapons[0] = Instantiate(startWeapon, new Vector3(weaponHold.position.x,weaponHold.position.y,0) , weaponHold.rotation) as Weapon;
+			weapons[0] = Instantiate(startWeapon, weaponHold.position, weaponHold.rotation) as Weapon;
 			weapons[0].setLayer(gameObject.layer);
 			weapons[0].transform.parent = weaponHold;
+			currentWeapon = 0;
 		}
 
+		public void reverseDirection(int c_dir) {
+			Debug.Log("before position " +weaponHold.transform.localPosition.ToString());
+			Debug.Log("local position " + transform.localPosition.ToString());
+			// left
+			Vector3 temp = weaponHold.transform.localPosition;
+			temp.x = -1*temp.x;
+			weaponHold.transform.localPosition = temp;
+			if (c_dir == 1) {
+				//weaponHold.position = new Vector3 (weaponHold.position);
+				weapons[currentWeapon].setDirection(c_dir);
+			} else { // right
+				//weaponHold.position = new Vector3 (weaponHold.position);
+				weapons[currentWeapon].setDirection(c_dir);
+			}
+			
+			Debug.Log("after position " +weaponHold.transform.localPosition.ToString());
+		}
 		public void EquipWeapon(Weapon secondWeapon){
 
 			if (weapons[1] == null) {

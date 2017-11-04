@@ -58,7 +58,7 @@ namespace CreativeSpore.RpgMapEditor
 
 
         [SerializeField]
-        private eAnimDir m_dir = eAnimDir.Down;
+        private eAnimDir m_dir = eAnimDir.Right;
 
         private int m_internalFrame; // frame counter used internally. CurFrame would be the real animation frame
         private float m_curFrameTime;
@@ -129,13 +129,21 @@ namespace CreativeSpore.RpgMapEditor
                 Debug.LogError("Animation " + name + " not found!");
         }
 
+        public void setAnimCount(int type) {
+            Debug.Log("Set Anim " +type);
+            m_animIdx = type;
+        }
+
         public void SetAnimDirection(Vector2 vDir)
         {
             if (vDir.magnitude > Vector2.kEpsilon)
             {
                 m_dir = m_dirAnimCtrl.GetAnimDirByVector(vDir);
+
             }
         }
+
+
 
         public Vector2 GetAnimDirection()
         {

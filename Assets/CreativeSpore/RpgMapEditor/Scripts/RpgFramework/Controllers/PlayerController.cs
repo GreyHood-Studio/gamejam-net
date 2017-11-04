@@ -10,7 +10,7 @@ namespace CreativeSpore.RpgMapEditor
 
         // Network Related Parameters
 		private PhotonView PhotonView;
-        
+
         // 작업중 Weapon
         WeaponHandler weaponH;
 
@@ -31,6 +31,8 @@ namespace CreativeSpore.RpgMapEditor
         //#region Singleton and Persistence
         static PlayerController s_instance;
         
+        // 0 is left 1 is right;
+        int currentDir = 1;
         void Awake()
         {
             /* 
@@ -88,6 +90,9 @@ namespace CreativeSpore.RpgMapEditor
 
 		protected override void Start () 
 		{
+
+            Debug.Log(gameObject.name+ " "  + gameObject.layer.ToString());
+            
             base.Start();
             weaponH = GetComponent<WeaponHandler>();
 			if( Camera2D == null )
@@ -132,12 +137,26 @@ namespace CreativeSpore.RpgMapEditor
                 // character mouse direction 
                 Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
                 if (dir.x > 0) {
+
                     m_animCtrl.AnimDirection = eAnimDir.Right;
+                    if (currentDir == 0) {
+                        // right
+                        weaponH.reverseDirection(1);
+                        currentDir = 1;
+                    }
+
                 } else if (dir.x < 0) {
+
                     m_animCtrl.AnimDirection = eAnimDir.Left;
+                    if (currentDir == 1) {
+                        // left
+                        weaponH.reverseDirection(0);
+                        currentDir = 0;
+                    }
+
                 }
 
-                if (Input.GetKeyDown("r")) { // mousebuttondown(0)
+                if (Input.GetMouseButtonDown(0)) { // mousebuttondown(0)
                     weaponH.Shoot();
                 }
                 
