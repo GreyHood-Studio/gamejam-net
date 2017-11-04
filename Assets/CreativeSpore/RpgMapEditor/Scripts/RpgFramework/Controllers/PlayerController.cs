@@ -11,7 +11,6 @@ namespace CreativeSpore.RpgMapEditor
         // 작업중 Weapon
         WeaponHandler weaponH;
 
-		//public GameObject BulletPrefab;
 		public float TimerBlockDirSet = 0.6f;
 		public Camera2DController Camera2D;
 		public float BulletAngDispersion = 15f;
@@ -26,25 +25,28 @@ namespace CreativeSpore.RpgMapEditor
 
 		private FollowObjectBehaviour m_camera2DFollowBehaviour;
 
-        #region Singleton and Persistence
+        //#region Singleton and Persistence
         static PlayerController s_instance;
+        
         void Awake()
         {
+            /* 
 #if UNITY_5_4 || UNITY_5_5_OR_NEWER
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
 #endif
+*/
             if(s_instance == null)
             {
                 DontDestroyOnLoad(gameObject);
                 s_instance = this;
             }
-            else
-            {
-                DestroyImmediate(gameObject);
-            }      
+            //else
+            //{
+            //    DestroyImmediate(gameObject);
+            //}      
         }
-        #endregion
+       // #endregion
 
         public void UndoDontDestroyOnLoad()
         {
@@ -71,7 +73,7 @@ namespace CreativeSpore.RpgMapEditor
                 DestroyImmediate(gameObject);
             }
         }
-
+        
         public override void SetVisible(bool value)
         {
             base.SetVisible(value);
@@ -92,24 +94,6 @@ namespace CreativeSpore.RpgMapEditor
 			m_camera2DFollowBehaviour.Target = transform;
 		}
 
-
-		void DoInputs()
-		{
-            // put shot button
-            if (Input.GetKeyDown("r")) { // mousebuttondown(0)
-                weaponH.Shoot();
-            } else if (Input.GetKeyDown("t")) { // mousebuttondown(1)
-                Evade();
-            } 
-            //else if (Input.GetAxis("Mouse ScrollWhell") != 0f ) { // mouse whell using
-            //    Debug.Log("Wheel");
-            //}
-		}
-
-        void Evade() {
-            
-        }
-        
         private int m_lastTileIdx = -1;
         private int m_lastFogSightLength = 0;
 
@@ -141,8 +125,10 @@ namespace CreativeSpore.RpgMapEditor
                     m_animCtrl.AnimDirection = eAnimDir.Left;
                 }
 
-                DoInputs();
-
+                if (Input.GetKeyDown("r")) { // mousebuttondown(0)
+                    weaponH.Shoot();
+                }
+                
                 bool isMoving = (m_phyChar.Dir.sqrMagnitude >= 0.01);
                 if (isMoving)
                 {
