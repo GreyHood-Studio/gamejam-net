@@ -17,56 +17,15 @@ namespace CreativeSpore.RpgMapEditor{
 		// 화력 1, 1, 1, 1
 		public int weaponType = 0;
 
-		public void setWeaponType(int type) {
-			if (weaponType == 0) {
-				maxBulletCount = -1;
-				maxMagazineCount = 10;
-				bulletVelocity = 3f;
-				ttl = 5f;
-				msBetweenShots = 100f;
-			} 
-			else if (weaponType == 1) {
-				maxBulletCount = 60;
-				maxMagazineCount = 10;
-				bulletVelocity = 1.5f;
-				msBetweenShots = 100f;
-				ttl = 5f;
-			} 
-			else if (weaponType == 2) {
-				maxBulletCount = 64;
-				maxMagazineCount = 8;
-				bulletVelocity = 3f;
-				ttl = 7f;
-				msBetweenShots = 150f;
-			} 
-			else if (weaponType == 3) {
-				maxBulletCount = 60;
-				maxMagazineCount = 5;
-				bulletVelocity = 5f;
-				ttl = 10f;
-				msBetweenShots = 300f;
-			}
-		}
+		int maxMagazineCount, remainBullet, remainMagazine;
+		float reloadTime, msBetweenShots,bulletVelocity, damage, ttl;
+
+		
 		int maxBulletCount;
 		// 총알 타입
 		public Projectile projectile;
-		public int maxMagazineCount = 90;
-		// 한 탄창당 최대 탄 개수
-		public int oneMagazineCount = 30;
-		// 소유하고 있는 탄 개수
-		int remainBullet;
-		// 현재 탄창에 남은 탄 개수
-		int remainMagazine;
-		// 장전속도
-		public float reloadTime = 1.2f;
-		// 연사 속도
-		public float msBetweenShots = 100;
-		// 탄 속도
-		public float bulletVelocity = 4.0f;
-		// 탄 공격력
-		public float damage = 5.0f;
-		// 탄 유지시간
-		public float ttl = 3.0f;
+		
+		
 		// 탄 계산 타임 변수
 		float nextShotTime;
 		// 재장전 체크
@@ -107,12 +66,57 @@ namespace CreativeSpore.RpgMapEditor{
 			Weaponlayer = w;
 		}
 
+		void Awake()
+		{
+			setWeaponType(weaponType);
+		}
 		
 		void Start () 
 		{
-			remainBullet = maxMagazineCount;
-			
-            //m_charAnimCtrl = GetComponent<DirectionalAnimation>();
+			remainBullet = maxBulletCount;
+		}
+
+		public void setWeaponType(int type) {
+			if (weaponType == 0) {
+				maxBulletCount = 1000000;
+				maxMagazineCount = 10;
+				bulletVelocity = 3f;
+				msBetweenShots = 100f;
+				ttl = 5f;
+				// 산탄도
+				reloadTime = 1.2f;
+				damage = 1.0f;
+			} 
+			else if (weaponType == 1) {
+				maxBulletCount = 60;
+				maxMagazineCount = 10;
+				bulletVelocity = 1.5f;
+				msBetweenShots = 100f;
+				ttl = 5f;
+				// 산탄도
+				reloadTime = 1.2f;
+				damage = 1.0f;
+			} 
+			else if (weaponType == 2) {
+				maxBulletCount = 64;
+				maxMagazineCount = 8;
+				bulletVelocity = 3f;
+				msBetweenShots = 150f;
+				ttl = 7f;
+				// 산탄도
+				reloadTime = 1.2f;
+				damage = 1.0f;
+			} 
+			else if (weaponType == 3) {
+				maxBulletCount = 60;
+				maxMagazineCount = 5;
+				bulletVelocity = 5f;
+				msBetweenShots = 300f;
+				ttl = 10f;
+				// 산탄도
+				reloadTime = 1.2f;
+				damage = 1.0f;
+			}
 		}
 
 		public IEnumerator Reload()
@@ -120,7 +124,7 @@ namespace CreativeSpore.RpgMapEditor{
 			reloading = true;
 			
 
-			if (remainMagazine >= oneMagazineCount) { // 탄창에 총알이 다 차 있을 경우
+			if (remainMagazine >= maxMagazineCount) { // 탄창에 총알이 다 차 있을 경우
 				Debug.Log("already max bullet");
 				yield return new WaitForSeconds(0.01f);
 			} else { // 리로드 할 수 있는 경우
@@ -130,7 +134,7 @@ namespace CreativeSpore.RpgMapEditor{
 				yield return new WaitForSeconds(reloadTime);
 
 				// 다시 채워야하는 총알의 양
-				int refill = oneMagazineCount - remainMagazine;
+				int refill = maxMagazineCount - remainMagazine;
 				
 				if (remainBullet > refill) { // 남은 총알이 더 많을 경우
 					remainMagazine += refill;
