@@ -5,10 +5,10 @@ using UnityEngine;
 namespace CreativeSpore.RpgMapEditor{
 	public class Projectile : MonoBehaviour {
 
-		public float Speed = 0.1f;
+		public float Speed;
 		public Vector3 Dir = new Vector3();
-		public float TimeToLive = 5f;
-        public float DamageQty = 0.5f;
+		public float TimeToLive;
+        public float DamageQty;
 
 		public GameObject OnDestroyFx;
 		public bool IsDestroyOnCollision = true;
@@ -16,16 +16,17 @@ namespace CreativeSpore.RpgMapEditor{
 		public void SetProjectile(float _speed, Vector3 bulletDir, float damage, float ttl, int Bulletlayer) {
 			Speed = _speed;
 			Dir = bulletDir;
+			Dir.z = 0;
 			DamageQty = damage;
 			TimeToLive = ttl;
 			gameObject.layer = Bulletlayer;
 			Destroy( transform.gameObject, TimeToLive);
 		}
+		
 		void Start()
 		{
 			
 		}
-
 		void Update () 
 		{
 			if( AutoTileMap.Instance.GetAutotileCollisionAtPosition( transform.position ) == eTileCollisionType.BLOCK )

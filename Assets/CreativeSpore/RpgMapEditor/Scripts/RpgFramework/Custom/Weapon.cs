@@ -12,7 +12,7 @@ namespace CreativeSpore.RpgMapEditor{
 		// 탄속 3, 1.5, 3, 5
 		// 사정거리 5, 3, 7, 10(막탄 5)
 		// 연사력 10s, 10s, 15s, 30s
-		// 산탄도 0, 45, 15, 0
+		// 산탄도 0, 45, 15, 0 == (n/5 + 1) 한번에 나가는 총알의 개수
 		// 재장전 시간 1.2, 1.2, 1.2, 1.2
 		// 화력 1, 1, 1, 1
 		public int weaponType = 0;
@@ -20,11 +20,11 @@ namespace CreativeSpore.RpgMapEditor{
 		int maxMagazineCount, remainBullet, remainMagazine;
 		float reloadTime, msBetweenShots,bulletVelocity, damage, ttl;
 
-		
+		float bulletArea;
 		int maxBulletCount;
+
 		// 총알 타입
 		public Projectile projectile;
-		
 		
 		// 탄 계산 타임 변수
 		float nextShotTime;
@@ -82,8 +82,8 @@ namespace CreativeSpore.RpgMapEditor{
 				maxMagazineCount = 10;
 				bulletVelocity = 3f;
 				msBetweenShots = 100f;
-				ttl = 5f;
-				// 산탄도
+				ttl = 3f;
+				bulletArea = 0;
 				reloadTime = 1.2f;
 				damage = 1.0f;
 			} 
@@ -92,8 +92,8 @@ namespace CreativeSpore.RpgMapEditor{
 				maxMagazineCount = 10;
 				bulletVelocity = 1.5f;
 				msBetweenShots = 100f;
-				ttl = 5f;
-				// 산탄도
+				ttl = 3f;
+				bulletArea = 45;
 				reloadTime = 1.2f;
 				damage = 1.0f;
 			} 
@@ -103,7 +103,7 @@ namespace CreativeSpore.RpgMapEditor{
 				bulletVelocity = 3f;
 				msBetweenShots = 150f;
 				ttl = 7f;
-				// 산탄도
+				bulletArea = 15;
 				reloadTime = 1.2f;
 				damage = 1.0f;
 			} 
@@ -113,12 +113,15 @@ namespace CreativeSpore.RpgMapEditor{
 				bulletVelocity = 5f;
 				msBetweenShots = 300f;
 				ttl = 10f;
-				// 산탄도
+				bulletArea = 0;
 				reloadTime = 1.2f;
 				damage = 1.0f;
 			}
 		}
 
+		public void refillBullet() {
+			remainBullet = maxBulletCount;
+		}
 		public IEnumerator Reload()
 		{
 			reloading = true;
@@ -147,47 +150,6 @@ namespace CreativeSpore.RpgMapEditor{
 			reloading = false;
 		}
 
-
-
-		/*
-		void LateUpdate () 
-		{
-			WeaponSprite.sprite = WeaponSpriteHorizontal;
-			Quaternion qRot = WeaponSprite.transform.localRotation;
-
-			if (m_charAnimCtrl.AnimDirection == eAnimDir.Right)
-			{
-				qRot.eulerAngles = new Vector3(0f, 0f, 0f);
-                WeaponSprite.transform.localPosition = vOffDirRight[(int)m_charAnimCtrl.CurrentFrame % vOffDirRight.Length];
-			}
-            else if (m_charAnimCtrl.AnimDirection == eAnimDir.Left)
-			{
-				qRot.eulerAngles = new Vector3(0f, 180f, 0f);
-                Vector3 vOff = vOffDirRight[(int)m_charAnimCtrl.CurrentFrame % vOffDirRight.Length];
-				vOff.x = -vOff.x;
-				vOff.z = -vOff.z;
-				WeaponSprite.transform.localPosition = vOff;
-			}
-            else if (m_charAnimCtrl.AnimDirection == eAnimDir.Down)
-			{
-				qRot.eulerAngles = new Vector3(0f, 0f, 270f);
-				WeaponSprite.sprite = WeaponSpriteVertical;
-                WeaponSprite.transform.localPosition = vOffDirDown[(int)m_charAnimCtrl.CurrentFrame % vOffDirDown.Length];
-			}
-			else // UP
-			{
-				qRot.eulerAngles = new Vector3(0f, 180f, 90f);
-                Vector3 vOff = vOffDirDown[(int)m_charAnimCtrl.CurrentFrame % vOffDirDown.Length];
-				vOff.x = -vOff.x;
-				vOff.z = -vOff.z;
-				vOff.y = vOff.y + 0.08f;
-				WeaponSprite.transform.localPosition = vOff;
-			}
-			
-			WeaponSprite.transform.localRotation = qRot;
-		}
-
-		*/
 		public void Shoot() {
 			Vector3 vBulletDir = Vector3.zero;
 			Vector3 vBulletPos = Vector3.zero;
@@ -206,9 +168,31 @@ namespace CreativeSpore.RpgMapEditor{
 					vBulletPos += transform.position;
 					vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
 					vBulletDir.z = -0.5f;
+		
+					if( weaponType == 1 ) {
+						float fRand = Random.Range(-1f, 1f);
+						fRand = Mathf.Pow(fRand, 5f);
+						vBulletDir = Quaternion.AngleAxis(bulletArea*fRand, Vector3.forward) * vBulletDir;
+						Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
+						newProjectile.SetProjectile(bulletVelocity + fRand, vBulletDir, damage, ttl, Weaponlayer);
+						
+						fRand = Mathf.Pow(fRand, 5f);
+						vBulletDir = Quaternion.AngleAxis(bulletArea*fRand, Vector3.forward) * vBulletDir;
+						Projectile newProjectile1 = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
+						newProjectile1.SetProjectile(bulletVelocity + fRand, vBulletDir, damage, ttl, Weaponlayer);
 
-					Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
-					newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
+						fRand = Mathf.Pow(fRand, 5f);
+						vBulletDir = Quaternion.AngleAxis(bulletArea*fRand, Vector3.forward) * vBulletDir;
+						Projectile newProjectile2 = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
+						newProjectile2.SetProjectile(bulletVelocity + fRand, vBulletDir, damage, ttl, Weaponlayer);
+					} else if ( weaponType == 2) {
+						Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
+						newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
+					} else {
+						Projectile newProjectile = Instantiate(projectile, vBulletPos, projectile.transform.rotation) as Projectile;
+						newProjectile.SetProjectile(bulletVelocity, vBulletDir, damage, ttl, Weaponlayer);
+					}
+					
 					remainMagazine--;
 
 					Debug.Log("bullet status" + remainBullet + " remain manazine(clip)" + remainMagazine);

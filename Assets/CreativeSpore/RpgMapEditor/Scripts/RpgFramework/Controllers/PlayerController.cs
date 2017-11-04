@@ -117,6 +117,10 @@ namespace CreativeSpore.RpgMapEditor
 
             else
             {   
+                if (Input.GetAxis("Mouse ScrollWheel") != 0f ) {
+                    weaponH.Change();
+                }
+
                 // character mouse direction 
                 Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
                 if (dir.x > 0) {

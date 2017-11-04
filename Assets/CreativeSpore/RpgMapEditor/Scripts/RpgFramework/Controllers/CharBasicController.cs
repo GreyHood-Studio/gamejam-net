@@ -58,8 +58,8 @@ namespace CreativeSpore.RpgMapEditor
             Debug.Log("Evade: " +edir.ToString());
             m_phyChar.isEvade = true;
             m_phyChar.Dir = edir;
-
-            //m_animCtrl.IsPlaying = m_phyChar.IsMoving;
+            
+            m_animCtrl.IsPlaying = m_phyChar.IsMoving;
             //m_animCtrl.SetAnimDirection(m_phyChar.Dir);
         }
 
