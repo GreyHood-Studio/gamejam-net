@@ -6,9 +6,50 @@ using UnityEngine;
 namespace CreativeSpore.RpgMapEditor{
 	public class Weapon : MonoBehaviour {
 		
-		public Projectile projectile;
+		// 무기 타입 0 = basic, 1 = Short, 2 = Medium, 3 = Long
+		// 최대 탄 용량 infinite, 60, 64, 60
+		// 탄창 크기 10, 10, 8, 5
+		// 탄속 3, 1.5, 3, 5
+		// 사정거리 5, 3, 7, 10(막탄 5)
+		// 연사력 10s, 10s, 15s, 30s
+		// 산탄도 0, 45, 15, 0
+		// 재장전 시간 1.2, 1.2, 1.2, 1.2
+		// 화력 1, 1, 1, 1
+		public int weaponType = 0;
 
-		// 최대 탄 개수
+		public void setWeaponType(int type) {
+			if (weaponType == 0) {
+				maxBulletCount = -1;
+				maxMagazineCount = 10;
+				bulletVelocity = 3f;
+				ttl = 5f;
+				msBetweenShots = 100f;
+			} 
+			else if (weaponType == 1) {
+				maxBulletCount = 60;
+				maxMagazineCount = 10;
+				bulletVelocity = 1.5f;
+				msBetweenShots = 100f;
+				ttl = 5f;
+			} 
+			else if (weaponType == 2) {
+				maxBulletCount = 64;
+				maxMagazineCount = 8;
+				bulletVelocity = 3f;
+				ttl = 7f;
+				msBetweenShots = 150f;
+			} 
+			else if (weaponType == 3) {
+				maxBulletCount = 60;
+				maxMagazineCount = 5;
+				bulletVelocity = 5f;
+				ttl = 10f;
+				msBetweenShots = 300f;
+			}
+		}
+		int maxBulletCount;
+		// 총알 타입
+		public Projectile projectile;
 		public int maxMagazineCount = 90;
 		// 한 탄창당 최대 탄 개수
 		public int oneMagazineCount = 30;
@@ -16,17 +57,19 @@ namespace CreativeSpore.RpgMapEditor{
 		int remainBullet;
 		// 현재 탄창에 남은 탄 개수
 		int remainMagazine;
+		// 장전속도
 		public float reloadTime = 1.2f;
 		// 연사 속도
 		public float msBetweenShots = 100;
 		// 탄 속도
 		public float bulletVelocity = 4.0f;
-
+		// 탄 공격력
 		public float damage = 5.0f;
-		public float ttl = 5.0f;
+		// 탄 유지시간
+		public float ttl = 3.0f;
 		// 탄 계산 타임 변수
 		float nextShotTime;
-		
+		// 재장전 체크
 		bool reloading;
 		// weapon layer
 		int Weaponlayer;
@@ -64,9 +107,11 @@ namespace CreativeSpore.RpgMapEditor{
 			Weaponlayer = w;
 		}
 
+		
 		void Start () 
 		{
 			remainBullet = maxMagazineCount;
+			
             //m_charAnimCtrl = GetComponent<DirectionalAnimation>();
 		}
 
@@ -97,6 +142,9 @@ namespace CreativeSpore.RpgMapEditor{
 			}
 			reloading = false;
 		}
+
+
+
 		/*
 		void LateUpdate () 
 		{
@@ -143,6 +191,7 @@ namespace CreativeSpore.RpgMapEditor{
 			if (reloading) return;
 
 			if (remainMagazine > 0) {
+
 			//if (equippedGun.type == "gun") <<<< add
 				if (Time.time > nextShotTime){
 					
