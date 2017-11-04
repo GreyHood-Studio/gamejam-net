@@ -31,7 +31,7 @@ namespace CreativeSpore.RpgMapEditor{
 			Vector3 temp = weaponHold.transform.localPosition;
 			temp.x = -1*temp.x;
 			weaponHold.transform.localPosition = temp;
-			if (c_dir == 1) {
+			if (c_dir ==0) {
 				//weaponHold.position = new Vector3 (weaponHold.position);
 				weapons[currentWeapon].setDirection(c_dir);
 			} else { // right

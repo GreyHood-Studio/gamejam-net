@@ -99,7 +99,9 @@ namespace CreativeSpore.RpgMapEditor
 			{
 				Camera2D = GameObject.FindObjectOfType<Camera2DController>();
 			}
-			
+			if (!PhotonView.isMine)
+				return;
+
 			m_camera2DFollowBehaviour = Camera2D.transform.GetComponent<FollowObjectBehaviour>();
 			m_camera2DFollowBehaviour.Target = transform;
 		}

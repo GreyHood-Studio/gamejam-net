@@ -54,7 +54,13 @@ public class PlayerNetwork : MonoBehaviour {
 
 	[PunRPC]
 	private void RPC_CreatePlayer(){
-		PhotonNetwork.Instantiate (System.IO.Path.Combine ("Prefabs", "Player"), new Vector3(15f, -26f, -0.5f), Quaternion.identity, 0);
+		foreach (PhotonPlayer player in PhotonNetwork.playerList) {
+			if (player.ID == PhotonNetwork.player.ID) {
+				GameObject spawnPoint = GameObject.Find ("Spawn" + player.ID.ToString());
+				PhotonNetwork.Instantiate (System.IO.Path.Combine ("Prefabs", "Player" + player.ID.ToString()), spawnPoint.transform.position, Quaternion.identity, 0);
+			}
+		}
 
 	}
+
 }
