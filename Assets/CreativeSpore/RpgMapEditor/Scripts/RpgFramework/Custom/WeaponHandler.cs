@@ -10,6 +10,8 @@ namespace CreativeSpore.RpgMapEditor{
 		public Weapon[] weapons = new Weapon[2];
 		public Transform weaponHold;
 		
+		public Weapon[] dump = new Weapon[4];
+
 		// Use this for initialization
 		
 		void Start()
@@ -40,6 +42,12 @@ namespace CreativeSpore.RpgMapEditor{
 			
 			Debug.Log("after position " +weaponHold.transform.localPosition.ToString());
 		}
+
+		public void addWeapon(int type) {
+			weapons[1] = Instantiate(dump[type], weaponHold.position, weaponHold.rotation) as Weapon;
+			EquipWeapon(weapons[1]);
+		}
+
 		public void EquipWeapon(Weapon secondWeapon){
 
 			if (weapons[1] == null) {

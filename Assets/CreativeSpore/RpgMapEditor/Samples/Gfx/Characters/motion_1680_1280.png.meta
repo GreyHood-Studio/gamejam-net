@@ -1,0 +1,1552 @@
+fileFormatVersion: 2
+guid: 2c304ed206d0f4f8c93bae7c4c4532d6
+timeCreated: 1509842115
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: motion_1680_1280_0
+    21300002: motion_1680_1280_1
+    21300004: motion_1680_1280_2
+    21300006: motion_1680_1280_3
+    21300008: motion_1680_1280_4
+    21300010: motion_1680_1280_5
+    21300012: motion_1680_1280_6
+    21300014: motion_1680_1280_7
+    21300016: motion_1680_1280_8
+    21300018: motion_1680_1280_9
+    21300020: motion_1680_1280_10
+    21300022: motion_1680_1280_11
+    21300024: motion_1680_1280_12
+    21300026: motion_1680_1280_13
+    21300028: motion_1680_1280_14
+    21300030: motion_1680_1280_15
+    21300032: motion_1680_1280_16
+    21300034: motion_1680_1280_17
+    21300036: motion_1680_1280_18
+    21300038: motion_1680_1280_19
+    21300040: motion_1680_1280_20
+    21300042: motion_1680_1280_21
+    21300044: motion_1680_1280_22
+    21300046: motion_1680_1280_23
+    21300048: motion_1680_1280_24
+    21300050: motion_1680_1280_25
+    21300052: motion_1680_1280_26
+    21300054: motion_1680_1280_27
+    21300056: motion_1680_1280_28
+    21300058: motion_1680_1280_29
+    21300060: motion_1680_1280_30
+    21300062: motion_1680_1280_31
+    21300064: motion_1680_1280_32
+    21300066: motion_1680_1280_33
+    21300068: motion_1680_1280_34
+    21300070: motion_1680_1280_35
+    21300072: motion_1680_1280_36
+    21300074: motion_1680_1280_37
+    21300076: motion_1680_1280_38
+    21300078: motion_1680_1280_39
+    21300080: motion_1680_1280_40
+    21300082: motion_1680_1280_41
+    21300084: motion_1680_1280_42
+    21300086: motion_1680_1280_43
+    21300088: motion_1680_1280_44
+    21300090: motion_1680_1280_45
+    21300092: motion_1680_1280_46
+    21300094: motion_1680_1280_47
+    21300096: motion_1680_1280_48
+    21300098: motion_1680_1280_49
+    21300100: motion_1680_1280_50
+    21300102: motion_1680_1280_51
+    21300104: motion_1680_1280_52
+    21300106: motion_1680_1280_53
+    21300108: motion_1680_1280_54
+    21300110: motion_1680_1280_55
+    21300112: motion_1680_1280_56
+    21300114: motion_1680_1280_57
+    21300116: motion_1680_1280_58
+    21300118: motion_1680_1280_59
+    21300120: motion_1680_1280_60
+    21300122: motion_1680_1280_61
+    21300124: motion_1680_1280_62
+    21300126: motion_1680_1280_63
+    21300128: motion_1680_1280_64
+    21300130: motion_1680_1280_65
+    21300132: motion_1680_1280_66
+    21300134: motion_1680_1280_67
+    21300136: motion_1680_1280_68
+    21300138: motion_1680_1280_69
+    21300140: motion_1680_1280_70
+    21300142: motion_1680_1280_71
+    21300144: motion_1680_1280_72
+    21300146: motion_1680_1280_73
+    21300148: motion_1680_1280_74
+    21300150: motion_1680_1280_75
+    21300152: motion_1680_1280_76
+    21300154: motion_1680_1280_77
+    21300156: motion_1680_1280_78
+    21300158: motion_1680_1280_79
+    21300160: motion_1680_1280_80
+    21300162: motion_1680_1280_81
+    21300164: motion_1680_1280_82
+    21300166: motion_1680_1280_83
+    21300168: motion_1680_1280_84
+    21300170: motion_1680_1280_85
+    21300172: motion_1680_1280_86
+    21300174: motion_1680_1280_87
+    21300176: motion_1680_1280_88
+    21300178: motion_1680_1280_89
+    21300180: motion_1680_1280_90
+    21300182: motion_1680_1280_91
+    21300184: motion_1680_1280_92
+    21300186: motion_1680_1280_93
+    21300188: motion_1680_1280_94
+    21300190: motion_1680_1280_95
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: motion_1680_1280_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_1
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_2
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_3
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_4
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_5
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_6
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_7
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_8
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_9
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_10
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_11
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 1120
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_13
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_14
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_15
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_16
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_17
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_18
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_19
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_20
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_21
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_22
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_23
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 960
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_25
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_26
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_27
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_28
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_29
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_30
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_31
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_32
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_33
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_34
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_35
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 800
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_37
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_38
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_39
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_40
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_41
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_42
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_43
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_44
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_45
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_46
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_47
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 640
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_49
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_50
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_51
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_52
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_53
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_54
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_55
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_56
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_57
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_58
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_59
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 480
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_61
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_62
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_63
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_64
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_65
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_66
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_67
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_68
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_69
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_70
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_71
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 320
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_73
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_74
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_75
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_76
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_77
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_78
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_79
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_80
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_81
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_82
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_83
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 160
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_85
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_86
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_87
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_88
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_89
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_90
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_91
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_92
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_93
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_94
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: motion_1680_1280_95
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 0
+        width: 140
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

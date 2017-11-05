@@ -179,13 +179,8 @@ namespace CreativeSpore.RpgMapEditor
                 }
 
                 // 아이템 줍기
-                /* 
-                if (Input.GetKey("f")) {
-                    if () {
-                        
-                    }
-                }
-                */
+                
+                
 
                 // 무기 버리기
                 if (Input.GetKey("g")) {
@@ -218,5 +213,34 @@ namespace CreativeSpore.RpgMapEditor
             m_lastFogSightLength = FogSightLength;
             m_lastTileIdx = tileIdx;
 		}
+
+        
+        void OnTriggerStay(Collider other)
+        {
+            Debug.Log(other.gameObject.tag);
+            if (other.gameObject.tag == "items") 
+            {
+                if (Input.GetKey("f")) {
+                    weaponH.AddBullet();
+                    Destroy(other.gameObject);
+                }
+            } else if (other.gameObject.tag == "guns") {
+                if (Input.GetKey("f")) {
+                    if (other.gameObject.name == "Gun_Box2") {
+                        //weapon2 LoveGun
+                        weaponH.addWeapon(1);
+                    } else if(other.gameObject.name == "Gun_Box3"){
+                        // weapon3 FireGun
+                        weaponH.addWeapon(2);
+                    } else if(other.gameObject.name == "Gun_Box4"){
+                        // weapon3 EggGun
+                        weaponH.addWeapon(3);
+                    }
+
+                    
+                    Destroy(other.gameObject);
+                }
+            }
+        }
 	}
 }
