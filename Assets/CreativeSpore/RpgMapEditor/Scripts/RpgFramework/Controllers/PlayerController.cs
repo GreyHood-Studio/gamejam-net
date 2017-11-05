@@ -172,12 +172,23 @@ namespace CreativeSpore.RpgMapEditor
 
                 }
 
+                // 재장전
                 if (Input.GetKey("r")) {
                     weaponH.Reload();
                     
                 }
-                // drop gun
-                if (Input.GetKey("h")) {
+
+                // 아이템 줍기
+                /* 
+                if (Input.GetKey("f")) {
+                    if () {
+                        
+                    }
+                }
+                */
+
+                // 무기 버리기
+                if (Input.GetKey("g")) {
                     weaponH.DropGun();
                 }
 
