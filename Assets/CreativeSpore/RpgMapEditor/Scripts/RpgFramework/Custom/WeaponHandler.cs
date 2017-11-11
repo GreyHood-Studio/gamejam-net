@@ -24,8 +24,6 @@ namespace CreativeSpore.RpgMapEditor{
 		}
 
 		public void reverseDirection(int c_dir) {
-			Debug.Log("before position " +weaponHold.transform.localPosition.ToString());
-			Debug.Log("local position " + transform.localPosition.ToString());
 			// left
 			Vector3 temp = weaponHold.transform.localPosition;
 			temp.x = -1 * temp.x;
@@ -38,7 +36,7 @@ namespace CreativeSpore.RpgMapEditor{
 				weapons[currentWeapon].setDirection(c_dir);
 			}
 			
-			Debug.Log("after position " +weaponHold.transform.localPosition.ToString());
+			//Debug.Log("after position " +weaponHold.transform.localPosition.ToString());
 		}
 
 		public void addWeapon(Weapon getWeapon) {
@@ -91,7 +89,11 @@ namespace CreativeSpore.RpgMapEditor{
 		}
 
 		public void AddBullet() {
+			if (weapons[1] != null) {
 			weapons[1].refillBullet();
+			} else {
+				weapons[0].refillBullet();
+			}
 		}
 
 		public void Change() {
@@ -120,7 +122,7 @@ namespace CreativeSpore.RpgMapEditor{
 		}
 
 		public void Shoot(){
-			if (weapons[currentWeapon] != null) {
+			if (this.weapons[currentWeapon] != null) {
 				weapons[currentWeapon].Shoot();
 			}
 		}

@@ -22,8 +22,8 @@ namespace CreativeSpore.RpgMapEditor{
 		public int weaponType = 0;
 		
 		public Sprite[] gunImage = new Sprite[2];
-		public int maxMagazineCount, remainBullet, remainMagazine;
-		float reloadTime, msBetweenShots, bulletVelocity, damage, ttl;
+		public int maxMagazineCount, remainBullet, remainMagazine,oneshot;
+		float reloadTime, msBetweenShots,bulletVelocity, damage, ttl;
 
 		float bulletArea;
 		int maxBulletCount;
@@ -60,8 +60,7 @@ namespace CreativeSpore.RpgMapEditor{
 
 		public void RefreshBulletCount() {
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
-			//GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
-			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)maxBulletCount).ToString();
+			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 		void Start () 
 		{
@@ -69,72 +68,75 @@ namespace CreativeSpore.RpgMapEditor{
 			remainBullet = maxBulletCount;
 
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
-			//GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
-			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)maxBulletCount).ToString();
+			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 		public void setWeaponType(int type) {
 			if (weaponType == 0) {
 				maxBulletCount = 1000;
-				maxMagazineCount = 10;
-				bulletVelocity = 4f;
+				maxMagazineCount = 6;
+				bulletVelocity = 2f;
 				msBetweenShots = 100f;
 				ttl = 3f;
 				bulletArea = 0;
 				reloadTime = 1.2f;
 				damage = 1.0f;
+				oneshot= 1;
 			} 
 			else if (weaponType == 1) {
-				maxBulletCount = 60;
-				maxMagazineCount = 10;
-				bulletVelocity = 3f;
-				msBetweenShots = 100f;
+				maxBulletCount = 50;
+				maxMagazineCount = 5;
+				bulletVelocity = 2f;
+				msBetweenShots = 90f;
 				ttl = 3f;
-				bulletArea = 45;
+				bulletArea = 180;
 				reloadTime = 1.2f;
 				damage = 1.0f;
+				oneshot= 2;
 			} 
 			else if (weaponType == 2) {
-				maxBulletCount = 64;
-				maxMagazineCount = 8;
-				bulletVelocity = 4f;
-				msBetweenShots = 150f;
-				ttl = 7f;
-				bulletArea = 15;
+				maxBulletCount = 50;
+				maxMagazineCount = 4;
+				bulletVelocity = 0.8f;
+				msBetweenShots = 70f;
+				ttl = 15f;
+				bulletArea = 10;
 				reloadTime = 1.2f;
 				damage = 1.0f;
+				oneshot= 3;
 			} 
 			else if (weaponType == 3) {
-				maxBulletCount = 60;
-				maxMagazineCount = 5;
-				bulletVelocity = 4f;
-				msBetweenShots = 300f;
-				ttl = 10f;
-				bulletArea = 0;
+				maxBulletCount = 50;
+				maxMagazineCount = 4;
+				bulletVelocity = 3f;
+				msBetweenShots = 120f;
+				ttl = 8.0f;
+				bulletArea = 40f;
 				reloadTime = 1.2f;
 				damage = 1.0f;
+				oneshot= 3;
 			}
 		}
 
 		public void setBullet(int type) {
 			if (weaponType == 0) {
-				bulletVelocity = 3f;
+				bulletVelocity = 2f;
 				ttl = 3f;
 				damage = 1.0f;
 			} 
 			else if (weaponType == 1) {
-				bulletVelocity = 1.5f;
+				bulletVelocity = 2f;
 				ttl = 3f;
 				damage = 1.0f;
 			} 
 			else if (weaponType == 2) {
-				bulletVelocity = 3f;
-				ttl = 7f;
+				bulletVelocity = 1f;
+				ttl = 15f;
 				damage = 1.0f;
 			} 
 			else if (weaponType == 3) {
-				bulletVelocity = 5f;
-				ttl = 10f;
+				bulletVelocity = 4f;
+				ttl = 8f;
 				damage = 1.0f;
 			}
 		}
@@ -142,7 +144,7 @@ namespace CreativeSpore.RpgMapEditor{
 		public void refillBullet() {
 			remainBullet = maxBulletCount;
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
-			//GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
+			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 		public IEnumerator Reload()
@@ -173,7 +175,6 @@ namespace CreativeSpore.RpgMapEditor{
 			
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
 			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
-			//GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 		public void Shoot() {
@@ -182,20 +183,53 @@ namespace CreativeSpore.RpgMapEditor{
 
 			if (reloading) return;
 
-			if (remainMagazine > 0) {
-			
+			if (remainMagazine > 0 ) {
+
 			//if (equippedGun.type == "gun") <<<< add
 				if (Time.time > nextShotTime){
 					
 					nextShotTime = Time.time + msBetweenShots/1000;
-					
-					Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 
-					vBulletPos += transform.position;
-					vBulletDir = (dir - new Vector3(transform.position.x, transform.position.y,0f)).normalized;
-					vBulletDir.z = -0.5f;
+					Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(gameObject.transform.position);
+					vBulletPos += gameObject.transform.position;
+					//vBulletDir = ((dir - new Vector3(transform.position.x + randomX, transform.position.y + randomY))).normalized;
+
+					//vBulletDir.z = -0.5f;
 					Debug.Log("Hey");
-					PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir, Weaponlayer, weaponType);
+
+					if (weaponType == 0)
+					{
+						var randomY = Random.Range(-2,2);
+						vBulletDir = ((dir - new Vector3(transform.position.x, transform.position.y * randomY))).normalized;
+						Debug.Log(vBulletDir);
+						PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir, Weaponlayer, weaponType);
+					} else if (weaponType == 1) {
+						for (int i=0; i<oneshot; i++){
+							var randomX = Random.Range(-bulletArea,+bulletArea);
+							var randomY = Random.Range(-bulletArea,+bulletArea);
+
+							vBulletDir = ((dir - new Vector3(transform.position.x * randomX, transform.position.y * randomY))).normalized;
+							Debug.Log(vBulletDir);
+							PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir, Weaponlayer, weaponType);
+						}
+					} else if (weaponType == 2) {
+						for (int i=0; i<oneshot; i++){
+							
+							var randomY = Random.Range(-bulletArea,+bulletArea);
+
+							vBulletDir = ((dir - new Vector3(2, transform.position.y * randomY))).normalized;
+							Debug.Log(vBulletDir);
+							PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir, Weaponlayer, weaponType);
+						}
+					} else if (weaponType == 3) {
+						for (int i=0; i<oneshot; i++){
+							//var randomX = Random.Range(-bulletArea,+bulletArea);
+
+							vBulletDir = ((dir - new Vector3(transform.position.x, transform.position.y-40 + bulletArea * i))).normalized;
+							Debug.Log(vBulletDir);
+							PhotonView.RPC ("RPC_Shoot", PhotonTargets.All, vBulletPos, vBulletDir, Weaponlayer, weaponType);
+						}
+					}
 					
 					remainMagazine--;
 
@@ -207,7 +241,7 @@ namespace CreativeSpore.RpgMapEditor{
 				
 			}
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
-			//GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
+			GameObject.Find("Bullet_Max_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
 
 		[PunRPC]

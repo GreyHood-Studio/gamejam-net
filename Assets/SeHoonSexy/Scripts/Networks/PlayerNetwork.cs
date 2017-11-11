@@ -7,7 +7,7 @@ public class PlayerNetwork : MonoBehaviour {
 	public string PlayerName { get; private set; }
 	private PhotonView PhotonView;
 	private int PlayersInGame = 0;
-	public int PlayersLeft;
+	//public int PlayersLeft;
 
 	// Use this for initialization
 	private void Awake () {
@@ -23,6 +23,11 @@ public class PlayerNetwork : MonoBehaviour {
 		SceneManager.sceneLoaded += OnSceneFinishedLoading;
 	}
 
+	void Update(){
+		if (PhotonNetwork.playerList.Length <= 1){
+			GameObject.Find ("Canvas").transform.Find ("YouWin").gameObject.SetActive (true);
+		}
+	}
 	private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode){
 		if (scene.name == "Game") {
 			if (PhotonNetwork.isMasterClient)

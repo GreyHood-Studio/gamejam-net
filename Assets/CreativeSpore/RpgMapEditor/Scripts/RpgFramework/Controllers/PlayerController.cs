@@ -211,10 +211,10 @@ namespace CreativeSpore.RpgMapEditor
             if (other.gameObject.tag == "items")
             {
                 if (Input.GetKey("f")) {
-                    if (other.gameObject.name == "AmmoItem") {
+                    if (other.gameObject.name == "Ammo") {
                         weaponH.AddBullet();
                         Destroy(other.gameObject);
-                    } else if (other.gameObject.name == "HealthItem") {
+                    } else if (other.gameObject.name == "Health") {
                         if (GetComponent<DamageBehaviour>().Health < 5){
                             GetComponent<DamageBehaviour>().Health++;
                             GameObject.Find("Health_C_Count").GetComponent<Text>().text = GetComponent<DamageBehaviour>().Health.ToString();
@@ -224,7 +224,6 @@ namespace CreativeSpore.RpgMapEditor
                 }
             } else if (other.gameObject.tag == "gunfabs") {
                 if (Input.GetKey("f")) {
-                   
                     this.weaponH.addWeapon(other.gameObject.GetComponent<Weapon>());
                 }
             }

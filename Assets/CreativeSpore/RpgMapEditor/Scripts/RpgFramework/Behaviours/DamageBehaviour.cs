@@ -65,7 +65,7 @@ namespace CreativeSpore.RpgMapEditor
                 
 				if( Health <= 0 )
 				{
-					GameObject.Find ("PlayerNetwork").GetComponent<PlayerNetwork> ().PlayersLeft--;
+					//GameObject.Find ("PlayerNetwork").GetComponent<PlayerNetwork> ().PlayersLeft--;
                     PhotonNetwork.Destroy(gameObject.GetPhotonView());				
                     GameObject.Find ("Canvas").transform.Find ("GameOver").gameObject.SetActive (true);
 
