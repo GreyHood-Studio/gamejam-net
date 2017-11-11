@@ -12,8 +12,7 @@ namespace CreativeSpore.RpgMapEditor{
 		
 		public Weapon[] dump = new Weapon[4];
 
-		// Use this for initialization
-		
+		// Use this for initialization		
 		void Start()
 		{
 			weapons[0] = null;
@@ -22,6 +21,7 @@ namespace CreativeSpore.RpgMapEditor{
 			weapons[0] = Instantiate(startWeapon, weaponHold.position, weaponHold.rotation) as Weapon;
 			weapons[0].setLayer(gameObject.layer);
 			weapons[0].transform.parent = weaponHold;
+			weapons[0].Reload();
 			currentWeapon = 0;
 		}
 
@@ -43,13 +43,20 @@ namespace CreativeSpore.RpgMapEditor{
 			Debug.Log("after position " +weaponHold.transform.localPosition.ToString());
 		}
 
-		public void addWeapon(int type) {
-			weapons[1] = Instantiate(dump[type], weaponHold.position, weaponHold.rotation) as Weapon;
-			EquipWeapon(weapons[1]);
+		public void addWeapon(Weapon getWeapon) {
+			getWeapon.GetComponent<Collider>().enabled = false;
+			getWeapon.gameObject.GetComponent<ItemCheck>().enabled = false;
+			getWeapon.gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+
+			Vector3 temp= getWeapon.gameObject.transform.position;
+			temp.x = weaponHold.position.x;
+			temp.y = weaponHold.position.y;
+			getWeapon.gameObject.transform.position = temp;
+			EquipWeapon(getWeapon);
+			
 		}
 
 		public void EquipWeapon(Weapon secondWeapon){
-
 			if (weapons[1] == null) {
 				weapons[1] = secondWeapon;
 				weapons[1].setLayer(gameObject.layer);
@@ -68,13 +75,20 @@ namespace CreativeSpore.RpgMapEditor{
 		}
 
 		public void DropGun() {
+			if(weapons[1] == null) { return; }
 			if(currentWeapon == 0 ){
 				weapons[1].gameObject.SetActive(true);
 			}
-			weapons[1].transform.parent = null;
+
+			weapons[1].gameObject.GetComponent<ItemCheck>().enabled = true;
+			weapons[1].GetComponent<Collider>().enabled = true;
+			weapons[1].gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+
+			weapons[1].transform.parent = GameObject.FindGameObjectsWithTag("itempos")[0].transform;
 			weapons[1] = null;
 			currentWeapon = 0;
 			weapons[currentWeapon].RefreshBulletCount();
+			weapons[currentWeapon].gameObject.SetActive(true);
 		}
 
 		public void AddBullet() {

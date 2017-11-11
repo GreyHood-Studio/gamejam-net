@@ -8,6 +8,7 @@ namespace CreativeSpore.RpgMapEditor
     [AddComponentMenu("RpgMapEditor/Controllers/CharBasicController", 10)]
     public class CharBasicController : MonoBehaviour
     {
+        public float flash_cd = 2.0f;
         public DirectionalAnimation AnimCtrl { get { return m_animCtrl; } }
         public PhysicCharBehaviour PhyCtrl { get { return m_phyChar; } }
 
@@ -35,16 +36,22 @@ namespace CreativeSpore.RpgMapEditor
             m_phyChar = GetComponent<PhysicCharBehaviour>();
         }
 
+        protected float flash_start = 0.0f;
         protected virtual void Update()
         {
             float fAxisX = 0.0f;
             float fAxisY = 0.0f;
             
             if (Input.GetMouseButtonDown(1)) {
-                Vector3 dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
-                dir.z = 0;
-                
-                UpdateEvade(dir);
+                // flash cooldown
+                if (Time.time > flash_start + flash_cd)
+                {
+                    flash_start = Time.time;
+                    Vector3 dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                    dir.z = 0;
+                    
+                    UpdateEvade(dir);
+                }
             } else {
                 // else (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
                 fAxisX = Input.GetAxis("Horizontal");
@@ -52,6 +59,10 @@ namespace CreativeSpore.RpgMapEditor
                 //Debug.Log("input movement horizon vertical" + fAxisX+" "+fAxisY);
                 UpdateMovement(fAxisX, fAxisY);
             }
+        }
+
+        protected void cooldown_effect(){
+
         }
 
         void UpdateEvade(Vector3 edir) {

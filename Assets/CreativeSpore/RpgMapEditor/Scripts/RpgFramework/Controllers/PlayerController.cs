@@ -97,24 +97,17 @@ namespace CreativeSpore.RpgMapEditor
 
 		protected override void Start () 
 		{
-            
-
             Debug.Log(gameObject.name+ " "  + gameObject.layer.ToString());
             
             base.Start();
             weaponH = GetComponent<WeaponHandler>();
+
 			if( Camera2D == null )
 			{
 				Camera2D = GameObject.FindObjectOfType<Camera2DController>();
 			}
 			if (!PhotonView.isMine)
 				return;
-
-            //healthUi.text = GetComponent<DamageBehaviour>().Health.ToString();
-            //clipRemainUi.text = weaponH.
-            //clipRemainUi.text = weaponH.weapons[weaponH.currentWeapon].remainMagazine.ToString();
-            //weaponRemainUi.text = weaponH.weapons[weaponH.currentWeapon].remainBullet.ToString();
-            //weaponRemainUi.text
 
 			m_camera2DFollowBehaviour = Camera2D.transform.GetComponent<FollowObjectBehaviour>();
 			m_camera2DFollowBehaviour.Target = transform;
@@ -153,7 +146,6 @@ namespace CreativeSpore.RpgMapEditor
                 // character mouse direction 
                 Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
                 if (dir.x > 0) {
-
                     m_animCtrl.AnimDirection = eAnimDir.Right;
                     if (currentDir == 0) {
                         // right
@@ -162,14 +154,12 @@ namespace CreativeSpore.RpgMapEditor
                     }
 
                 } else if (dir.x < 0) {
-
                     m_animCtrl.AnimDirection = eAnimDir.Left;
                     if (currentDir == 1) {
                         // left
                         weaponH.reverseDirection(0);
                         currentDir = 0;
                     }
-
                 }
 
                 // 재장전
@@ -177,8 +167,6 @@ namespace CreativeSpore.RpgMapEditor
                     weaponH.Reload();
                 }
 
-                // 아이템 줍기
-                
                 // 무기 버리기
                 if (Input.GetKey("g")) {
                     weaponH.DropGun();
@@ -210,8 +198,8 @@ namespace CreativeSpore.RpgMapEditor
             m_lastFogSightLength = FogSightLength;
             m_lastTileIdx = tileIdx;
 		}
-
         
+        // 아이템 줍기
         void OnTriggerStay(Collider other)
         {
             Debug.Log(other.gameObject.tag);
@@ -226,22 +214,9 @@ namespace CreativeSpore.RpgMapEditor
                         Destroy(other.gameObject);
                     }
                 }
-            } else if (other.gameObject.tag == "guns") {
+            } else if (other.gameObject.tag == "gunfabs") {
                 if (Input.GetKey("f")) {
-                    if (other.gameObject.name == "Gun_Box2") {
-                        //weapon2 LoveGun
-                        weaponH.addWeapon(1);
-                        Destroy(other.gameObject);
-                    } else if(other.gameObject.name == "Gun_Box3"){
-                        // weapon3 FireGun
-                        weaponH.addWeapon(2);
-                        Destroy(other.gameObject);
-                    } else if(other.gameObject.name == "Gun_Box4"){
-                        // weapon3 EggGun
-                        weaponH.addWeapon(3);
-                        Destroy(other.gameObject);
-                    }
-                    
+                    weaponH.addWeapon(other.gameObject.GetComponent<Weapon>());
                 }
             }
         }

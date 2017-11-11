@@ -9,7 +9,6 @@ namespace CreativeSpore.RpgMapEditor{
 		
 		//Network Related
 		private PhotonView PhotonView;
-
 		
 		// 무기 타입 0 = basic, 1 = Short, 2 = Medium, 3 = Long
 		// 최대 탄 용량 infinite, 60, 64, 60
@@ -58,6 +57,7 @@ namespace CreativeSpore.RpgMapEditor{
 			PhotonView = GetComponent<PhotonView> ();
 			setWeaponType(weaponType);
 		}
+
 		public void RefreshBulletCount() {
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
 			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
@@ -75,7 +75,7 @@ namespace CreativeSpore.RpgMapEditor{
 
 		public void setWeaponType(int type) {
 			if (weaponType == 0) {
-				maxBulletCount = 1000000;
+				maxBulletCount = 110;
 				maxMagazineCount = 10;
 				bulletVelocity = 4f;
 				msBetweenShots = 100f;
@@ -208,7 +208,6 @@ namespace CreativeSpore.RpgMapEditor{
 			GameObject.Find("Bullet_C_Count").GetComponent<Text>().text = ((int)remainMagazine).ToString();
 			GameObject.Find("Bullet_W_Count").GetComponent<Text>().text = ((int)remainBullet).ToString();
 		}
-
 
 		[PunRPC]
 		private void RPC_Shoot(Vector3 bulletPos, Vector3 bulletDir, int myLayer, int type) {
