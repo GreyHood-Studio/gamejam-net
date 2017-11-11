@@ -225,7 +225,7 @@ namespace CreativeSpore.RpgMapEditor
             } else if (other.gameObject.tag == "gunfabs") {
                 if (Input.GetKey("f")) {
                    
-                    weaponH.addWeapon(other.gameObject.GetComponent<Weapon>());
+                    this.weaponH.addWeapon(other.gameObject.GetComponent<Weapon>());
                 }
             }
         }

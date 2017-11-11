@@ -46,6 +46,7 @@ namespace CreativeSpore.RpgMapEditor
 
 		public void ApplyDamage( DamageData _damageData )
 		{
+
 			if( m_timerGodMode <= 0 )
 			{
 				m_timerGodMode = GodModeTimer;
@@ -53,17 +54,20 @@ namespace CreativeSpore.RpgMapEditor
 
 				//AudioSource.PlayClipAtPoint(SoundLibController.GetInstance().GetSound("hurtEnemy_00"), transform.position); 
 							
+				if (!gameObject.GetPhotonView().isMine)
+					return;
+
 				Health-=_damageData.Quantity;
 				Debug.Log("Health" + Health);
 				//GetComponent<PlayerController> ().healthUi.text = Health.ToString();
-				if (gameObject.GetPhotonView ().isMine) {
-                    GameObject.Find ("Health_C_Count").GetComponent<Text> ().text = ((int)Health).ToString ();
-                }
+				
+                GameObject.Find ("Health_C_Count").GetComponent<Text> ().text = ((int)Health).ToString ();
+                
 				if( Health <= 0 )
 				{
 					GameObject.Find ("PlayerNetwork").GetComponent<PlayerNetwork> ().PlayersLeft--;
+                    PhotonNetwork.Destroy(gameObject.GetPhotonView());				
                     GameObject.Find ("Canvas").transform.Find ("GameOver").gameObject.SetActive (true);
-                    Destroy(gameObject);
 
 					if( FXDeathPrefab )
 					{
