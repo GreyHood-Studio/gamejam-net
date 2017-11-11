@@ -15,6 +15,8 @@ public class PlayerNetwork : MonoBehaviour {
 		PhotonView = GetComponent<PhotonView> ();
 		PlayerName = "Smilegate#" + Random.Range (1000, 9999);
 
+		Screen.SetResolution(1600, 900, false);
+
 		PhotonNetwork.sendRate = 60;
 		PhotonNetwork.sendRateOnSerialize = 30;
 
