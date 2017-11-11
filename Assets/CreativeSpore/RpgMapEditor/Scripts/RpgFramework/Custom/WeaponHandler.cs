@@ -10,8 +10,6 @@ namespace CreativeSpore.RpgMapEditor{
 		public Weapon[] weapons = new Weapon[2];
 		public Transform weaponHold;
 		
-		public Weapon[] dump = new Weapon[4];
-
 		// Use this for initialization		
 		void Start()
 		{
