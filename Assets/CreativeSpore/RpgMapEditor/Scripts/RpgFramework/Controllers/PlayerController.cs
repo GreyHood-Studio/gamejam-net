@@ -145,20 +145,21 @@ namespace CreativeSpore.RpgMapEditor
 
                 // character mouse direction 
                 Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                if (dir.x > 0) {
-                    m_animCtrl.AnimDirection = eAnimDir.Right;
-                    if (currentDir == 0) {
-                        // right
-                        weaponH.reverseDirection(1);
-                        currentDir = 1;
-                    }
-
-                } else if (dir.x < 0) {
-                    m_animCtrl.AnimDirection = eAnimDir.Left;
-                    if (currentDir == 1) {
-                        // left
-                        weaponH.reverseDirection(0);
-                        currentDir = 0;
+                if (!isForce){
+                    if (dir.x > 0) {
+                        m_animCtrl.AnimDirection = eAnimDir.Right;
+                        if (currentDir == 0) {
+                            // right
+                            weaponH.reverseDirection(1);
+                            currentDir = 1;
+                        }
+                    } else if (dir.x < 0) {
+                        m_animCtrl.AnimDirection = eAnimDir.Left;
+                        if (currentDir == 1) {
+                            // left
+                            weaponH.reverseDirection(0);
+                            currentDir = 0;
+                        }
                     }
                 }
 

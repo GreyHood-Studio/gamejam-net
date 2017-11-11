@@ -46,7 +46,6 @@ namespace CreativeSpore.RpgMapEditor
 
 		public void ApplyDamage( DamageData _damageData )
 		{
-			
 			if( m_timerGodMode <= 0 )
 			{
 				m_timerGodMode = GodModeTimer;
@@ -61,15 +60,13 @@ namespace CreativeSpore.RpgMapEditor
 				if( Health <= 0 )
 				{
 					Destroy( gameObject );
+
 					if( FXDeathPrefab )
 					{
 						GameObject fxDeath = Instantiate( FXDeathPrefab, transform.position, FXDeathPrefab.transform.rotation ) as GameObject;
 						Destroy( fxDeath, 3f);
 					}
-					if( RandomDrop )
-					{
-						Instantiate( RandomDrop, transform.position, transform.rotation );
-					}
+					
 				}
 			}
 		}

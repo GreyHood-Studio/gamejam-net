@@ -8,7 +8,16 @@ namespace CreativeSpore.RpgMapEditor
     [AddComponentMenu("RpgMapEditor/Controllers/CharBasicController", 10)]
     public class CharBasicController : MonoBehaviour
     {
+        protected bool isForce = false;
+        // dash cool down
         public float flash_cd = 2.0f;
+        // dash end time
+        protected float end = 0.35f;
+
+        protected float flash_start = 0.0f;
+        protected float start = 0.0f;
+        protected Vector3 d_dir;
+
         public DirectionalAnimation AnimCtrl { get { return m_animCtrl; } }
         public PhysicCharBehaviour PhyCtrl { get { return m_phyChar; } }
 
@@ -35,22 +44,48 @@ namespace CreativeSpore.RpgMapEditor
             m_animCtrl = GetComponent<DirectionalAnimation>();
             m_phyChar = GetComponent<PhysicCharBehaviour>();
         }
-
-        protected float flash_start = 0.0f;
+        
         protected virtual void Update()
         {
             float fAxisX = 0.0f;
             float fAxisY = 0.0f;
             
+            // during dash
+            if (isForce) {
+                
+                if (Time.time < start + end) {
+
+                    transform.Translate(d_dir * Time.deltaTime * 3.0f);
+                    return;
+                } else {
+                    d_dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                    gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                    isForce = false;
+
+                    if (d_dir.x > 0) {
+                        AnimCtrl.AnimDirection = eAnimDir.Right;
+                    } else {
+                        AnimCtrl.AnimDirection = eAnimDir.Left;
+                    }
+                }
+            } 
+
             if (Input.GetMouseButtonDown(1)) {
                 // flash cooldown
-                if (Time.time > flash_start + flash_cd)
-                {
+                if (Time.time > flash_start + flash_cd) {
+                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                    isForce = true;
                     flash_start = Time.time;
-                    Vector3 dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
-                    dir.z = 0;
-                    
-                    UpdateEvade(dir);
+                    start = Time.time;
+
+                    d_dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                    d_dir.z = 0;
+                    if (d_dir.x < 0) {
+                        AnimCtrl.AnimDirection = eAnimDir.Down;
+                    }
+                    else {
+                        AnimCtrl.AnimDirection = eAnimDir.Up;
+                    }
                 }
             } else {
                 // else (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
@@ -62,7 +97,16 @@ namespace CreativeSpore.RpgMapEditor
         }
 
         protected void cooldown_effect(){
+            
+        }
 
+
+        void UpdateDash(Vector3 dashPosition) {
+            
+            
+
+           
+            //}
         }
 
         void UpdateEvade(Vector3 edir) {

@@ -79,7 +79,7 @@ namespace CreativeSpore.RpgMapEditor
                 Destroy(this);
             }
         }
-
+        
         void Update()
         {            
             m_isActivationKeyPressed = m_isActivationKeyPressed && Input.GetKey(ActivationKey) || Input.GetKeyDown(ActivationKey) && Time.timeSinceLevelLoad > 0.5f;

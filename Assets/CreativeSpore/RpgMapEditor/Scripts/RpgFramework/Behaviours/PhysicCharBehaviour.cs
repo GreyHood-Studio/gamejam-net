@@ -65,7 +65,6 @@ namespace CreativeSpore.RpgMapEditor
 				float currentEvadeTime = 0.0f;
 				while (currentEvadeTime < maxEvadeTime) {
 					//transform.Translate (Dir.normalized);
-
 					transform.position += Dir * maxEvadeLength * Time.deltaTime;
 					
 					if (IsCollEnabled)
