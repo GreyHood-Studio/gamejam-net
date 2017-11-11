@@ -106,7 +106,7 @@ namespace CreativeSpore.RpgMapEditor
 			{
 				Camera2D = GameObject.FindObjectOfType<Camera2DController>();
 			}
-            
+
 			if (PhotonView.isMine){
                 m_camera2DFollowBehaviour = Camera2D.transform.GetComponent<FollowObjectBehaviour> ();
                 m_camera2DFollowBehaviour.Target = transform;
@@ -173,6 +173,7 @@ namespace CreativeSpore.RpgMapEditor
 
                 // 무기 버리기
                 if (Input.GetKey("g")) {
+                    
                     weaponH.DropGun();
                 }
 
@@ -214,13 +215,16 @@ namespace CreativeSpore.RpgMapEditor
                         weaponH.AddBullet();
                         Destroy(other.gameObject);
                     } else if (other.gameObject.name == "HealthItem") {
-                        GetComponent<DamageBehaviour>().Health++;
-                        GameObject.Find("Health_C_Count").GetComponent<Text>().text = GetComponent<DamageBehaviour>().Health.ToString();
-                        Destroy(other.gameObject);
+                        if (GetComponent<DamageBehaviour>().Health < 5){
+                            GetComponent<DamageBehaviour>().Health++;
+                            GameObject.Find("Health_C_Count").GetComponent<Text>().text = GetComponent<DamageBehaviour>().Health.ToString();
+                            Destroy(other.gameObject);
+                        }
                     }
                 }
             } else if (other.gameObject.tag == "gunfabs") {
                 if (Input.GetKey("f")) {
+                   
                     weaponH.addWeapon(other.gameObject.GetComponent<Weapon>());
                 }
             }

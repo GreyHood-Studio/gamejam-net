@@ -49,9 +49,11 @@ namespace CreativeSpore.RpgMapEditor{
 		{
 			if( IsDestroyOnCollision && other.attachedRigidbody && (other.gameObject.layer != gameObject.layer) )
 			{
-				//apply damage here
-                DamageData.ApplyDamage(other.attachedRigidbody.gameObject, DamageQty, Dir);
-				Destroy(gameObject);
+				if ((other.gameObject.tag != gameObject.tag)) {
+					//apply damage here
+					DamageData.ApplyDamage(other.attachedRigidbody.gameObject, DamageQty, Dir);
+					Destroy(gameObject);
+				}
 			}
 		}
 	}
