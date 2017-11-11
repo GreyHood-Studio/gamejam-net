@@ -106,11 +106,14 @@ namespace CreativeSpore.RpgMapEditor
 			{
 				Camera2D = GameObject.FindObjectOfType<Camera2DController>();
 			}
-			if (!PhotonView.isMine)
-				return;
+            
+			if (PhotonView.isMine){
+                m_camera2DFollowBehaviour = Camera2D.transform.GetComponent<FollowObjectBehaviour> ();
+                m_camera2DFollowBehaviour.Target = transform;
+            }
 
-			m_camera2DFollowBehaviour = Camera2D.transform.GetComponent<FollowObjectBehaviour>();
-			m_camera2DFollowBehaviour.Target = transform;
+            if (!PhotonView.isMine)
+                gameObject.transform.GetChild (2).GetComponent<SpriteRenderer> ().enabled = false;
 		}
 
         private int m_lastTileIdx = -1;
@@ -207,11 +210,12 @@ namespace CreativeSpore.RpgMapEditor
             if (other.gameObject.tag == "items")
             {
                 if (Input.GetKey("f")) {
-                    if (other.gameObject.name == "Item_Box1") {
+                    if (other.gameObject.name == "AmmoItem") {
                         weaponH.AddBullet();
                         Destroy(other.gameObject);
-                    } else if (other.gameObject.name == "Item_Box2") {
+                    } else if (other.gameObject.name == "HealthItem") {
                         GetComponent<DamageBehaviour>().Health++;
+                        GameObject.Find("Health_C_Count").GetComponent<Text>().text = GetComponent<DamageBehaviour>().Health.ToString();
                         Destroy(other.gameObject);
                     }
                 }

@@ -7,7 +7,7 @@ namespace CreativeSpore.RpgMapEditor
     //TODO: add AddComponentMenu to the other scripts
     [AddComponentMenu("RpgMapEditor/Animation/DirectionalAnimation", 10)]
     [DisallowMultipleComponent]
-    public class DirectionalAnimation : MonoBehaviour 
+    public class DirectionalAnimation : Photon.MonoBehaviour 
     {
         [System.Flags]
         public enum ePlayMode
@@ -159,6 +159,14 @@ namespace CreativeSpore.RpgMapEditor
                 case eAnimDir.Up_Right: return new Vector2(1, 1).normalized;
             }
             return Vector2.zero;
+        }
+        
+        void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info){
+            if (stream.isWriting) {
+                stream.SendNext (m_dir);
+            } else {
+                m_dir = (eAnimDir)stream.ReceiveNext ();
+            }
         }
     }
 }
