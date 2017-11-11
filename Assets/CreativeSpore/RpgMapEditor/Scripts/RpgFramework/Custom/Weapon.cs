@@ -77,7 +77,7 @@ namespace CreativeSpore.RpgMapEditor{
 			if (weaponType == 0) {
 				maxBulletCount = 1000000;
 				maxMagazineCount = 10;
-				bulletVelocity = 3f;
+				bulletVelocity = 4f;
 				msBetweenShots = 100f;
 				ttl = 3f;
 				bulletArea = 0;
@@ -87,7 +87,7 @@ namespace CreativeSpore.RpgMapEditor{
 			else if (weaponType == 1) {
 				maxBulletCount = 60;
 				maxMagazineCount = 10;
-				bulletVelocity = 1.5f;
+				bulletVelocity = 3f;
 				msBetweenShots = 100f;
 				ttl = 3f;
 				bulletArea = 45;
@@ -97,7 +97,7 @@ namespace CreativeSpore.RpgMapEditor{
 			else if (weaponType == 2) {
 				maxBulletCount = 64;
 				maxMagazineCount = 8;
-				bulletVelocity = 3f;
+				bulletVelocity = 4f;
 				msBetweenShots = 150f;
 				ttl = 7f;
 				bulletArea = 15;
@@ -107,7 +107,7 @@ namespace CreativeSpore.RpgMapEditor{
 			else if (weaponType == 3) {
 				maxBulletCount = 60;
 				maxMagazineCount = 5;
-				bulletVelocity = 5f;
+				bulletVelocity = 4f;
 				msBetweenShots = 300f;
 				ttl = 10f;
 				bulletArea = 0;

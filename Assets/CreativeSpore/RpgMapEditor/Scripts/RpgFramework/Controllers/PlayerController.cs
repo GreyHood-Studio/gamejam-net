@@ -175,13 +175,10 @@ namespace CreativeSpore.RpgMapEditor
                 // 재장전
                 if (Input.GetKey("r")) {
                     weaponH.Reload();
-                    
                 }
 
                 // 아이템 줍기
                 
-                
-
                 // 무기 버리기
                 if (Input.GetKey("g")) {
                     weaponH.DropGun();
@@ -221,24 +218,30 @@ namespace CreativeSpore.RpgMapEditor
             if (other.gameObject.tag == "items") 
             {
                 if (Input.GetKey("f")) {
-                    weaponH.AddBullet();
-                    Destroy(other.gameObject);
+                    if (other.gameObject.name == "Item_Box1") {
+                        weaponH.AddBullet();
+                        Destroy(other.gameObject);
+                    } else if (other.gameObject.name == "Item_Box2") {
+                        GetComponent<DamageBehaviour>().Health++;
+                        Destroy(other.gameObject);
+                    }
                 }
             } else if (other.gameObject.tag == "guns") {
                 if (Input.GetKey("f")) {
                     if (other.gameObject.name == "Gun_Box2") {
                         //weapon2 LoveGun
                         weaponH.addWeapon(1);
+                        Destroy(other.gameObject);
                     } else if(other.gameObject.name == "Gun_Box3"){
                         // weapon3 FireGun
                         weaponH.addWeapon(2);
+                        Destroy(other.gameObject);
                     } else if(other.gameObject.name == "Gun_Box4"){
                         // weapon3 EggGun
                         weaponH.addWeapon(3);
+                        Destroy(other.gameObject);
                     }
-
                     
-                    Destroy(other.gameObject);
                 }
             }
         }
