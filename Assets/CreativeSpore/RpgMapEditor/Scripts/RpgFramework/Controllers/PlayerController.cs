@@ -215,7 +215,7 @@ namespace CreativeSpore.RpgMapEditor
         void OnTriggerStay(Collider other)
         {
             Debug.Log(other.gameObject.tag);
-            if (other.gameObject.tag == "items") 
+            if (other.gameObject.tag == "items")
             {
                 if (Input.GetKey("f")) {
                     if (other.gameObject.name == "Item_Box1") {
