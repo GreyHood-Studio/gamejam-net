@@ -56,10 +56,14 @@ namespace CreativeSpore.RpgMapEditor
 				Health-=_damageData.Quantity;
 				Debug.Log("Health" + Health);
 				//GetComponent<PlayerController> ().healthUi.text = Health.ToString();
-				GameObject.Find("Health_C_Count").GetComponent<Text>().text = ((int)Health).ToString();
+				if (gameObject.GetPhotonView ().isMine) {
+                    GameObject.Find ("Health_C_Count").GetComponent<Text> ().text = ((int)Health).ToString ();
+                }
 				if( Health <= 0 )
 				{
-					Destroy( gameObject );
+					GameObject.Find ("PlayerNetwork").GetComponent<PlayerNetwork> ().PlayersLeft--;
+                    GameObject.Find ("Canvas").transform.Find ("GameOver").gameObject.SetActive (true);
+                    Destroy(gameObject);
 
 					if( FXDeathPrefab )
 					{

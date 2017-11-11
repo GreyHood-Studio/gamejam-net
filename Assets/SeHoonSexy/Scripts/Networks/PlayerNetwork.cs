@@ -7,6 +7,7 @@ public class PlayerNetwork : MonoBehaviour {
 	public string PlayerName { get; private set; }
 	private PhotonView PhotonView;
 	private int PlayersInGame = 0;
+	public int PlayersLeft;
 
 	// Use this for initialization
 	private void Awake () {

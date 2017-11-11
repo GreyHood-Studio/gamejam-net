@@ -30,4 +30,8 @@ public class CreateRoom : MonoBehaviour {
 		print ("Room created successfully.");
 	}
 
+	public void OnClick_LeaveRoom(){
+        PhotonNetwork.LeaveRoom ();
+        PhotonNetwork.LoadLevel (0);
+    }
 }
